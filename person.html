@@ -98,7 +98,7 @@
 
 
 
-    const locationList = [
+    let locationList = [
         "Hospital", "School", "Library",
         "Gym", "Coffee Shop", "Mall",
         "Stadium", "Theater", "Restaurant",
@@ -133,11 +133,35 @@
         "Workshop", "Observatory", "Factory",
         "Brewery", "Laboratory", "Art Studio"
     ];
+    locationList = locationList.filter((item,index) => locationList.indexOf(item) === index)
 
 
 
-    const descriptors = [
-        "Disheveled", "Vengeful", "Triumphant", "Reluctant", "Jealous", "Joyful", "Lusty", "Sensuous", "Timid", "Overconfident", "Agreeable", "Queasy", "Curious", "Enthusiastic", "Resilient", "Sincere", "Energetic", "Pessimistic", "Resourceful", "Compassionate", "Sarcastic", "Persistent", "Adventurous", "Cautious", "Cheerful", "Optimistic", "Pensive", "Inquisitive", "Determined", "Reckless", "Indifferent", "Confident", "Gloomy", "Courageous", "Generous", "Thoughtful", "Mysterious", "Foolish", "Caring", "Ambitious", "Reliable", "Stubborn", "Friendly", "Impulsive", "Serene", "Bashful", "Grateful", "Fierce", "Whimsical", "Loyal", "Mysterious", "Gregarious", "Unpredictable", "Helpful", "Hesitant", "Charming", "Reclusive", "Adaptable", "Insecure", "Vivacious", "Innovative", "Doubtful", "Spontaneous", "Self-assured", "Patient", "Skeptical", "Impatient", "Passionate", "Thoughtless", "Altruistic", "Considerate", "Meticulous", "Egocentric", "Grumpy", "Warm-hearted", "Prudent", "Proud", "Sensible", "Nervous", "Dependable", "Reckless", "Artistic", "Analytical", "Humble", "Arrogant", "Tolerant", "Anxious", "Respectful", "Carefree", "Cynical", "Confused", "Resolute", "Vulnerable", "Distrustful", "Polite", "Sarcastic", "Proud", "Hopeful", "Apprehensive", "Optimistic", "Gentle", "Callous", "Amiable", "Depressed", "Relaxed", "Thoughtful", "Daring", "Irritable", "Innocent", "Decisive", "Adventurous", "Mature", "Clumsy", "Responsible", "Whimsical", "Resourceful", "Gracious", "Gullible", "Diligent", "Sociable", "Unyielding", "Stoic", "Empathetic", "Reliable", "Sarcastic", "Enigmatic", "Vibrant", "Tenacious", "Inflexible", "Intuitive", "Respectful", "Courageous", "Indecisive", "Unpredictable", "Altruistic", "Cautious", "Adaptable", "Charismatic", "Discreet", "Enthusiastic", "Open-minded", "Perceptive", "Optimistic", "Determined", "Analytical", "Generous", "Honest", "Mysterious", "Pragmatic", "Contemplative", "Humble", "Vulnerable", "Impulsive", "Passionate", "Eccentric", "Inquisitive", "Sensible", "Lighthearted", "Thoughtful", "Compassionate", "Relaxed", "Adventurous", "Energetic", "Introspective", "Steadfast", "Independent", "Skeptical", "Creative", "Diplomatic", "Adventurous", "Reclusive", "Selfless", "Outgoing", "Insecure", "Tenacious", "Brilliant", "Stoic", "Affectionate", "Sarcastic", "Persistent", "Sincere", "Serene", "Ambitious", "Pessimistic", "Jovial", "Modest", "Resourceful", "Playful", "Empathetic", "Sensible", "Optimistic", "Introverted", "Adventurous", "Practical", "Curious",
+    let descriptors = [
+        "Disheveled", "Vengeful", "Triumphant", "Reluctant", "Jealous", "Joyful", "Lusty", "Sensuous", "Timid", 
+        "Overconfident", "Agreeable", "Queasy", "Curious", "Enthusiastic", "Resilient", "Sincere", 
+        "Energetic", "Pessimistic", "Resourceful", "Compassionate", "Sarcastic", "Persistent", 
+        "Adventurous", "Cautious", "Cheerful",  "Pensive", "Inquisitive", "Determined", "Reckless", "Indifferent", "Confident", "Gloomy", 
+        "Courageous", "Generous", "Thoughtful", "Mysterious", "Foolish", "Caring", "Ambitious", "Reliable", "Stubborn", "Friendly", 
+        "Impulsive", "Serene", "Bashful", "Grateful", "Fierce", "Whimsical", "Loyal", "Mysterious", "Gregarious", "Unpredictable", 
+        "Helpful", "Hesitant", "Charming", "Reclusive", "Adaptable", "Insecure", "Vivacious", "Innovative", "Doubtful", "Spontaneous", 
+        "Self-assured", "Patient", "Skeptical", "Impatient", "Passionate", "Thoughtless", "Altruistic", "Considerate", "Meticulous", "Egocentric", 
+        "Grumpy", "Warm-hearted", "Prudent", "Proud", "Sensible", "Nervous", "Dependable", "Reckless", "Artistic", "Analytical", 
+        "Humble", "Arrogant", "Tolerant", "Anxious", "Respectful", "Carefree", "Cynical", "Confused", "Resolute", "Vulnerable", 
+        "Distrustful", "Polite", "Sarcastic", "Proud", "Hopeful", "Apprehensive", "Optimistic", "Gentle", "Callous", "Amiable", 
+        "Depressed", "Relaxed", "Thoughtful", "Daring", "Irritable", "Innocent", "Decisive", "Adventurous", "Mature", "Clumsy", 
+        "Responsible", "Whimsical", "Resourceful", "Gracious", "Gullible", "Diligent", "Sociable", "Unyielding", "Stoic", "Empathetic", 
+        "Reliable", "Sarcastic", "Enigmatic", "Vibrant", "Tenacious", "Inflexible", "Intuitive", "Respectful", "Courageous", "Indecisive", 
+        "Unpredictable", "Altruistic",  "Adaptable", "Charismatic", "Discreet", "Enthusiastic", "Open-minded", "Perceptive", "Optimistic", 
+        "Determined", "Analytical", "Generous", "Honest", "Mysterious", "Pragmatic", "Contemplative",
+         "Humble", "Vulnerable", "Impulsive", "Passionate", "Eccentric", "Inquisitive", 
+        "Sensible", "Lighthearted", "Thoughtful", "Compassionate", "Relaxed", "Adventurous", "Energetic", 
+        "Introspective", "Steadfast", "Independent", 
+        "Skeptical", "Creative", "Diplomatic", "Adventurous", "Reclusive", "Selfless", "Outgoing", "Insecure", "Tenacious", 
+        "Brilliant", "Stoic", "Affectionate", "Sarcastic", "Persistent", "Sincere", "Serene", 
+        "Ambitious", "Pessimistic", "Jovial", "Modest", "Resourceful", "Playful", "Empathetic", "Sensible", 
+        "Optimistic", "Introverted", "Adventurous", 
+        "Practical", "Curious",
         "Inventive",
         "Sophisticated",
         "Carefree",
@@ -160,7 +184,9 @@
         "Discerning",
         "Exuberant"
     ];
-    const roleList = [
+    descriptors = descriptors.filter((item,index) => descriptors.indexOf(item) === index)
+
+    let roleList = [
         "Sister", "Boyfriend", "Boss",
         "Firefighter", "School Nurse", "Politician",
         "Dog Catcher", "Social Worker", "Best Friend",
@@ -231,6 +257,7 @@
         "Phlebotomist", "Landscape Architect", "Film Director",
         "Sports Coach", "Environmental Planner", "Gardener",
     ];
+    roleList = roleList.filter((item,index) => roleList.indexOf(item) === index)
 
 
 
