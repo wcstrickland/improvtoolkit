@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Wheel</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="common.js"></script>
+</head>
+
+<body style="display: flex;justify-content: center;">
+    <div class="center-contain" style="flex-direction: column;">
+        <p>click the wheel to get a random emotion</p>
+        <img id="emote-wheel" style="max-width: 90%; height: auto;" src="wheel.png">
+        <input id="generated-emotion" disabled type="text" style="margin-top: 2em;">
+
+    </div>
+
+</body>
+
+<style>
+    .center-contain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .rotated-image {
+        transform: rotate(20deg);
+    }
+
+    .image {
+        -webkit-animation: spin 4s linear infinite;
+        -moz-animation: spin 4s linear infinite;
+        animation: spin 1s linear infinite;
+    }
+
+    @-moz-keyframes spin {
+        100% {
+            -moz-transform: rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<script>
+
+    document.getElementById("emote-wheel").addEventListener("click", (e) => {
+        getRandomEmotion()
+    })
+
+    let emotions = [
+        "Hate", "Hostile", "Agitated", "Frustrated", "Annoyed", "Aggravated", "Restful", "Jealous",
+        "Contempt", "Revolted", "Agony", "Hurt", "Depressed", "Sorrow", "Dismayed", "Displeased",
+        "Regretful", "Guilty", "Isolated", "Lonely", "Grief", "Powerless", "Shocked", "Dismayed",
+        "Disillusioned", "Perplexed", "Astonished", "Awe-Struck", "Speechless", "Astounded", "Stimulated",
+        "Touched", "Pleased", "Satisfied", "Amused", "Delighted", "Jovial", "Blissful", "Triumphant",
+        "Illustrious", "Eager", "Hopeful", "Excited", "Zeal", "Euphoric", "Jubilation", "Enchanted", "Rapture",
+        "Romantic", "Fondness", "Sentimental", "Attracted", "Passion", "Infatuation", "Caring", "Compassionate",
+        "Relieved", "Satisfied", "Frightened", "Helpless", "Panic", "Hysterical", "Inferior", "Inadequate",
+        "Worried", "Anxious", "Mortified", "Dread"
+    ]
+
+    function getRandomEmotion() {
+        let index = randomNumber(0, emotions.length - 1)
+        document.getElementById("generated-emotion").value = emotions[index]
+        document.getElementById("emote-wheel").setAttribute("class", "image")
+        setTimeout(()=>{
+            document.getElementById("emote-wheel").setAttribute("class", "")
+        },1000)
+    }
+
+
+</script>
+
+</html>
