@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,12 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Person</title>
     <link rel="stylesheet" type="text/css" href="app.css">
-    <script src="common.js"></script> 
+    <script src="common.js"></script>
 </head>
 
-<body>
+<body style="display: flex; justify-content: center; flex-direction: column;">
+    <p style="text-align: center; margin-bottom:3em;">
+        Ask yourself what does a <b>"Reckless Art Instructor"</b> act like?
+        <br> Why are they like this?
+        <br> What does it look like when they go to <b>"Prison"</b>
+        <br> or a <b>"Job Interview"</b>
+    </p>
     <div class="center-contain">
-
+        <button onclick="getRandomPov()">Random <b>POV</b></button>
+        <h3 id="pov"></h3>
+    </div>
+    <div class="center-contain">
+        <button onclick="getRandomEnv()">Random <b>Environment</b></button>
+        <h3 id="environ"></h3>
+    </div>
+    <div class="center-contain">
+        <button onclick="getRandomEvent()">Random <b>Event</b></button>
+        <h3 id="event"></h3>
     </div>
 </body>
 
@@ -22,10 +36,204 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        flex-direction: column;
     }
 </style>
 
+
 <script>
+    function getRandomPov() {
+        let descriptor = descriptors[randomNumber(0, descriptors.length - 1)]
+        let role = roleList[randomNumber(0, roleList.length - 1)]
+        let povText = `${descriptor} ${role}`
+        document.getElementById("pov").textContent = povText;
+    }
+
+    function getRandomEnv() {
+        let location = locationList[randomNumber(0, locationList.length - 1)]
+        document.getElementById("environ").textContent = location;
+    }
+
+    function getRandomEvent() {
+        let eventActivity = eventList[randomNumber(0, eventList.length - 1)]
+        document.getElementById("event").textContent = eventActivity;
+    }
+
+    const eventList = [
+        "Birthday Party", "Wedding", "Graduation Ceremony",
+        "Baby Shower", "Anniversary Celebration", "Retirement Party",
+        "Engagement Party", "Barbecue", "Fundraising Gala",
+        "Concert", "Bridal Shower", "Reunion",
+        "Business Conference", "Product Launch", "Holiday Celebration",
+        "Charity Auction", "Art Exhibition", "Sporting Event",
+        "Movie Premiere", "Award Ceremony", "Book Launch",
+        "Fashion Show", "Trade Show", "New Year's Eve Party",
+        "Bar Mitzvah", "Bat Mitzvah", "Art Auction",
+        "Science Fair", "Music Festival", "Wine Tasting",
+        "Charity Run", "Craft Fair", "Prom",
+        "Thanksgiving Dinner", "Job Fair", "Lecture Series",
+        "Food Festival", "Poetry Reading", "Comedy Show",
+        "Talent Show", "Graduation Party", "Exhibition Opening",
+        "Political Rally", "Memorial Service", "Community Picnic",
+        "Film Festival", "Engagement Photoshoot", "Poetry Slam",
+        "Fashion Week", "Charity Ball", "Costume Party",
+        "Gaming Convention", "Bar Crawl", "Fashion Exhibition",
+        "Art Festival", "Car Show", "Wine and Cheese Tasting",
+        "Product Demo", "Auction Fundraiser", "Pop-up Market",
+        "Pet Show", "Charity Auction", "Street Fair",
+        "Car Rally", "Science Exhibition", "Environmental Rally",
+        "Tech Expo", "Poetry Workshop", "Beer Festival",
+        "Dance Competition", "Wellness Retreat", "Holiday Parade",
+        "Air Show", "Flower Show", "Farmers Market",
+        "Pet Adoption Event", "Home and Garden Show", "Craft Beer Tasting",
+        "Culinary Workshop", "Dog Show", "Art Walk",
+        "Kids' Fair", "Wine Auction", "Music Concert",
+        "Dog Agility Competition", "Career Fair", "Art Workshop",
+        "Motivational Seminar", "Wedding Expo", "Gaming Tournament",
+        "Vintage Car Show", "Jazz Festival", "Cultural Festival",
+        "Tech Conference", "Street Art Exhibition", "Craft Workshop",
+        "Antique Fair", "Orchid Show", "Circus Performance",
+        "Dog Obedience Competition"
+    ];
+
+
+
+    const locationList = [
+        "Hospital", "School", "Library",
+        "Gym", "Coffee Shop", "Mall",
+        "Stadium", "Theater", "Restaurant",
+        "Park", "Airport", "Beach",
+        "Museum", "Concert Hall", "Office",
+        "Farm", "Zoo", "Church",
+        "Cemetery", "Laboratory", "Amusement Park",
+        "Factory", "Spa", "Shopping Center",
+        "Hotel", "University", "Pharmacy",
+        "Garage", "Orphanage", "Playground",
+        "Daycare Center", "Gymnasium", "Courthouse",
+        "Workshop", "Greenhouse", "Aquarium",
+        "Temple", "Observatory", "Workshop",
+        "Vineyard", "Laboratory", "Studio",
+        "Casino", "Concert Venue", "Bakery",
+        "Brewery", "Car Dealership", "Film Studio",
+        "Art Gallery", "Community Center", "Animal Shelter",
+        "Recording Studio", "Water Park", "Laboratory",
+        "Workshop", "Bowling Alley", "Theater",
+        "Police Station", "Fire Station", "Factory",
+        "Arcade", "Bowling Alley", "Observatory",
+        "Clinic", "Lodge", "Farmhouse",
+        "Warehouse", "Recycling Center", "Fitness Center",
+        "Dance Studio", "Film Set", "Laboratory",
+        "Workshop", "Studio", "Auction House",
+        "Art Studio", "Workshop", "Office",
+        "Stadium", "Workshop", "Theatre",
+        "Casino", "Observatory", "Studio",
+        "Laboratory", "Factory", "Workshop",
+        "Recording Studio", "Spa", "Laboratory",
+        "Workshop", "Studio", "Laboratory",
+        "Workshop", "Observatory", "Factory",
+        "Brewery", "Laboratory", "Art Studio"
+    ];
+
+
+
+    const descriptors = [
+        "Disheveled", "Vengeful", "Triumphant", "Reluctant", "Jealous", "Joyful", "Lusty", "Sensuous", "Timid", "Overconfident", "Agreeable", "Queasy", "Curious", "Enthusiastic", "Resilient", "Sincere", "Energetic", "Pessimistic", "Resourceful", "Compassionate", "Sarcastic", "Persistent", "Adventurous", "Cautious", "Cheerful", "Optimistic", "Pensive", "Inquisitive", "Determined", "Reckless", "Indifferent", "Confident", "Gloomy", "Courageous", "Generous", "Thoughtful", "Mysterious", "Foolish", "Caring", "Ambitious", "Reliable", "Stubborn", "Friendly", "Impulsive", "Serene", "Bashful", "Grateful", "Fierce", "Whimsical", "Loyal", "Mysterious", "Gregarious", "Unpredictable", "Helpful", "Hesitant", "Charming", "Reclusive", "Adaptable", "Insecure", "Vivacious", "Innovative", "Doubtful", "Spontaneous", "Self-assured", "Patient", "Skeptical", "Impatient", "Passionate", "Thoughtless", "Altruistic", "Considerate", "Meticulous", "Egocentric", "Grumpy", "Warm-hearted", "Prudent", "Proud", "Sensible", "Nervous", "Dependable", "Reckless", "Artistic", "Analytical", "Humble", "Arrogant", "Tolerant", "Anxious", "Respectful", "Carefree", "Cynical", "Confused", "Resolute", "Vulnerable", "Distrustful", "Polite", "Sarcastic", "Proud", "Hopeful", "Apprehensive", "Optimistic", "Gentle", "Callous", "Amiable", "Depressed", "Relaxed", "Thoughtful", "Daring", "Irritable", "Innocent", "Decisive", "Adventurous", "Mature", "Clumsy", "Responsible", "Whimsical", "Resourceful", "Gracious", "Gullible", "Diligent", "Sociable", "Unyielding", "Stoic", "Empathetic", "Reliable", "Sarcastic", "Enigmatic", "Vibrant", "Tenacious", "Inflexible", "Intuitive", "Respectful", "Courageous", "Indecisive", "Unpredictable", "Altruistic", "Cautious", "Adaptable", "Charismatic", "Discreet", "Enthusiastic", "Open-minded", "Perceptive", "Optimistic", "Determined", "Analytical", "Generous", "Honest", "Mysterious", "Pragmatic", "Contemplative", "Humble", "Vulnerable", "Impulsive", "Passionate", "Eccentric", "Inquisitive", "Sensible", "Lighthearted", "Thoughtful", "Compassionate", "Relaxed", "Adventurous", "Energetic", "Introspective", "Steadfast", "Independent", "Skeptical", "Creative", "Diplomatic", "Adventurous", "Reclusive", "Selfless", "Outgoing", "Insecure", "Tenacious", "Brilliant", "Stoic", "Affectionate", "Sarcastic", "Persistent", "Sincere", "Serene", "Ambitious", "Pessimistic", "Jovial", "Modest", "Resourceful", "Playful", "Empathetic", "Sensible", "Optimistic", "Introverted", "Adventurous", "Practical", "Curious",
+        "Inventive",
+        "Sophisticated",
+        "Carefree",
+        "Vigilant",
+        "Caring",
+        "Eccentric",
+        "Adventurous",
+        "Savvy",
+        "Persistent",
+        "Resilient",
+        "Compassionate",
+        "Daring",
+        "Reckless",
+        "Forthright",
+        "Vexed",
+        "Whimsical",
+        "Stubborn",
+        "Adventurous",
+        "Sensitive",
+        "Discerning",
+        "Exuberant"
+    ];
+    const roleList = [
+        "Sister", "Boyfriend", "Boss",
+        "Firefighter", "School Nurse", "Politician",
+        "Dog Catcher", "Social Worker", "Best Friend",
+        "Son", "Co-worker", "Mentor",
+        "Soldier", "Lawyer", "Next of Kin",
+        "Nurse Practitioner", "Teacher", "Chef",
+        "Paramedic", "Principal", "Mayor",
+        "Animal Control Officer", "Counselor", "Neighbor",
+        "Daughter", "Supervisor", "Coach",
+        "Captain", "Paralegal", "Spouse",
+        "Janitor", "Pediatrician", "Clergy",
+        "Accountant", "Lifeguard", "Detective",
+        "Librarian", "Teammate", "General",
+        "Legal Aid", "Grandparent", "Director",
+        "Plumber", "Marriage Counselor", "Babysitter",
+        "Judge", "Sibling", "Manager",
+        "Usher", "Coach", "Corporal",
+        "Attorney", "Guardian", "CEO",
+        "Zoologist", "Therapist", "Landlord",
+        "Mechanic", "Caretaker", "Police Officer",
+        "Artist", "Nanny", "Senator",
+        "Psychologist", "Landscaper", "Advisor",
+        "Paramedic", "Principal Investigator", "Electrician",
+        "Companion", "Mayor Pro Tempore", "Campaign Manager",
+        "Technician", "Home Health Aide", "Sheriff",
+        "Account Executive", "Legal Guardian", "Entrepreneur",
+        "Archaeologist", "Psychiatric Nurse", "Pharmacist",
+        "Personal Trainer", "Fire Marshal", "Mentorship Coordinator",
+        "Financial Advisor", "Veterinarian", "Marriage Therapist",
+        "Neighborly", "Colonel", "Notary Public",
+        "Custodian", "Guidance Counselor", "Housekeeper",
+        "Animal Rights Activist", "Chief of Staff", "Researcher",
+        "Taxi Driver", "Sponsor", "HR Manager",
+        "Physical Therapist",
+        "Pilot", "Event Planner", "Forensic Scientist",
+        "Architect", "Electrician", "Referee",
+        "Biologist", "Flight Attendant", "Songwriter",
+        "Dentist", "Graphic Designer", "Park Ranger",
+        "Translator", "Geologist", "Barista",
+        "Construction Worker", "Meteorologist", "Zookeeper",
+        "Economist", "Interior Designer", "Museum Curator",
+        "Pharmaceutical Sales Rep", "Yoga Instructor", "Botanist",
+        "Meteorologist", "Nutritionist", "Flight Attendant",
+        "Geographer", "Pharmacist", "Mechanic",
+        "Realtor", "Librarian", "Event Planner",
+        "Hair Stylist", "Chemist", "Landscaper",
+        "Biomedical Engineer", "Personal Trainer", "Referee",
+        "Speech Therapist", "Surveyor", "Acrobat",
+        "Physical Therapist", "Graphic Designer", "Economist",
+        "Videographer", "Taxi Driver", "Research Scientist",
+        "Security Guard", "Animator", "Surgeon",
+        "Firefighter", "Astronomer", "Fashion Designer",
+        "Conductor", "Pet Groomer", "Aquarium Curator",
+        "Biotechnologist", "Social Media Manager", "Urban Planner",
+        "Martial Arts Instructor", "Cinematographer", "Cartographer",
+        "Epidemiologist", "Event Coordinator", "Data Analyst",
+        "Electrician", "Stage Manager", "Robotics Engineer",
+        "Marine Biologist", "Environmental Consultant", "Crime Scene Investigator",
+        "Park Ranger", "Meteorologist", "Linguist",
+        "Psychiatrist", "Environmental Scientist", "Digital Marketer",
+        "Civil Engineer", "Fitness Instructor", "Copywriter",
+        "Physical Therapist Assistant", "Criminal Defense Attorney", "Sommelier",
+        "Biomedical Scientist", "Sound Engineer", "Fashion Stylist",
+        "Zookeeper", "Geophysicist", "Biomedical Technician",
+        "Museum Curator", "Biomedical Illustrator", "Brand Manager",
+        "Forensic Pathologist", "Chemical Engineer", "Nanny",
+        "Agricultural Scientist", "Robotics Technician", "Political Analyst",
+        "Phlebotomist", "Landscape Architect", "Film Director",
+        "Sports Coach", "Environmental Planner", "Gardener",
+    ];
+
+
+
 
 </script>
 
