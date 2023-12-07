@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="common.js"></script>
+</head>
+
+<body style="display: flex; flex-direction: column;">
+    <div class="center-contain">
+
+        <fieldset style="margin-top:5em;">
+            <legend>Select Tags</legend>
+
+            <div>
+                <input type="checkbox" id="listening" name="listening" />
+                <label for="listening">listening</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="warmup" name="warmup" />
+                <label for="warmup">warmup</label>
+            </div>
+
+
+            <div>
+                <input type="checkbox" id="justification" name="justification" />
+                <label for="justification">justification</label>
+            </div>
+
+
+
+        </fieldset>
+
+
+    </div>
+        <div id="exercises">
+
+        </div>
+</body>
+
+<style>
+    .center-contain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+</style>
+
+<script>
+
+    let inputs = document.getElementsByTagName('input')
+    for (const input of inputs) {
+        input.addEventListener("click", (e)=> {
+            let val = e.target.id
+            if(e.target.checked){
+                addTag(val)
+            }else{
+                removeTag(val)
+            }
+            populate()
+        })
+    }
+
+    function populate(){
+        let output = "<ul>"
+        exercises.forEach(element => {
+            if(tags.some(x => element.tags.includes(x))){
+                let objTags = element.tags.join(", ")
+                output += `<li><a href="${element.url}">${element.title}</a>  [ ${objTags} ]</li>`
+            }
+        });
+        output += "</ul>"
+        let exes = document.querySelector('#exercises')
+        exes.innerHTML = output
+    }
+
+
+    function addTag(tag){
+        tags.push(tag)
+    }
+    function removeTag(tag){
+        tags = tags.filter(x => x !== tag)
+    }
+
+
+    let tags = []
+
+
+    let exercises = [
+        {"url": "https://wiki.improvresourcecenter.com/index.php?title=One_Word_Story",
+        "title": "one word story",
+        "tags": ["warmup"],
+        },
+        {"url": "https://www.learnimprov.com/yes-and/",
+        "title": "yes and",
+        "tags": ["listening", "warmup"],
+        },
+        {"url": "https://www.reddit.com/r/improv/comments/9xs64p/will_hinesucb_accusation_exercise/",
+        "title": "Accusation",
+        "tags": ["justification"],
+        },
+        {"url": "",
+        "title": "",
+        "tags": [],
+        },
+        {"url": "",
+        "title": "",
+        "tags": [],
+        },
+        {"url": "",
+        "title": "",
+        "tags": [],
+        },
+    ]
+    populate()
+
+</script>
+
+</html>
