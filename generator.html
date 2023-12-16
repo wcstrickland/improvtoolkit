@@ -28,6 +28,10 @@
         <button onclick="getRandomEvent()">Random <b>Event</b></button>
         <h3 id="event"></h3>
     </div>
+    <div class="center-contain">
+        <button onclick="getRandomObject()">Random <b>Object</b></button>
+        <h3 id="object"></h3>
+    </div>
 </body>
 
 <style>
@@ -57,6 +61,10 @@
     function getRandomEvent() {
         let eventActivity = eventList[randomNumber(0, eventList.length - 1)]
         document.getElementById("event").textContent = eventActivity;
+    }
+    function getRandomObject() {
+        let randObject = itemList[randomNumber(0, itemList.length - 1)]
+        document.getElementById("object").textContent = randObject;
     }
 
     const eventList = [
@@ -96,6 +104,53 @@
         "Dog Obedience Competition"
     ];
 
+    const itemList = [
+        "Pen", "Paper", "Chair", "Table",
+        "Book", "Lamp", "Phone", "Keys",
+        "Coffee mug", "Sunglasses", "Headphones", "Wallet",
+        "Water bottle", "Plant", "Remote control", "Towel",
+        "Spoon", "Fork", "Knife", "Plate",
+        "Couch", "Television", "Mouse pad", "Keyboard",
+        "Scissors", "Notebook", "Marker", "Glue",
+        "Backpack", "Tissue box", "Watch", "Ruler",
+        "Calculator", "USB drive", "Charger", "Scotch tape",
+        "Hairbrush", "Toothbrush", "Toothpaste", "Soap",
+        "Shampoo", "Conditioner", "Deodorant", "Razor",
+        "Nail clippers", "Pencil sharpener", "Stapler", "Eraser",
+        "Screwdriver", "Hammer", "Nails", "Screws",
+        "Flashlight", "Batteries", "Extension cord", "Hangers",
+        "Laundry detergent", "Fabric softener", "Dish soap", "Sponge",
+        "Trash bag", "Tongs", "Can opener", "Oven mitts",
+        "Microwave", "Refrigerator", "Freezer", "Stove",
+        "Dishwasher", "Coffee maker", "Toaster", "Blender",
+        "Cutting board", "Mixing bowl", "Measuring cup", "Whisk",
+        "Colander", "Saucepan", "Frying pan", "Pot",
+        "Cooking utensils", "Broom", "Dustpan", "Vacuum cleaner",
+        "Mop", "Bucket", "Garden hose", "Sprinkler",
+        "Rake", "Shovel", "Wheelbarrow", "Trowel",
+        "Gloves", "Sunscreen", "Bug spray", "Hat",
+        "Sunglasses case", "Luggage", "Passport", "Travel adapter",
+        "Neck pillow", "Earplugs", "Eye mask", "Hand sanitizer",
+        "Facial tissues", "Chapstick", "Lip balm", "Sunblock",
+        "First aid kit", "Bandages", "Antiseptic wipes", "Pain reliever",
+        "Cold medicine", "Allergy medication", "Thermometer", "Cotton swabs",
+        "Tweezers", "Scalpel", "Rubbing alcohol", "Medical gloves",
+        "Face mask", "Disposable gloves", "Safety pins", "Flash drive",
+        "External hard drive", "Portable charger", "SD card",
+        "Ethernet cable", "Power strip", "Laptop sleeve", "Screen cleaner",
+        "Microfiber cloth", "Desk organizer", "Whiteboard", "Bulletin board",
+        "Push pins", "Sticky notes", "Desk lamp", "Chair mat",
+        "Mouse", "Desk calendar", "Desk chair", "File folders",
+        "Document organizer", "Paper clips", "Binder clips", "Staples",
+        "Stapler remover", "Pencil holder", "Desk drawer organizer", "Highlighters",
+        "Printer", "Scanner", "Copier", "Ink cartridges",
+        "Printer paper", "Notebook paper", "Graph paper", "Construction paper",
+        "Post-it flags", "Envelopes", "Mailing labels", "Rubber bands",
+        "Tape dispenser", "Correction fluid", "Glue stick", "Presentation clicker",
+        "Hole puncher", "Scotch tape dispenser", "Battery charger", "Battery tester",
+        "Cord organizer", 
+    ];
+
 
 
     let locationList = [
@@ -133,34 +188,34 @@
         "Workshop", "Observatory", "Factory",
         "Brewery", "Laboratory", "Art Studio"
     ];
-    locationList = locationList.filter((item,index) => locationList.indexOf(item) === index)
+    locationList = locationList.filter((item, index) => locationList.indexOf(item) === index)
 
 
 
     let descriptors = [
-        "Disheveled", "Vengeful", "Triumphant", "Reluctant", "Jealous", "Joyful", "Lusty", "Sensuous", "Timid", 
-        "Overconfident", "Agreeable", "Queasy", "Curious", "Enthusiastic", "Resilient", "Sincere", 
-        "Energetic", "Pessimistic", "Resourceful", "Compassionate", "Sarcastic", "Persistent", 
-        "Adventurous", "Cautious", "Cheerful",  "Pensive", "Inquisitive", "Determined", "Reckless", "Indifferent", "Confident", "Gloomy", 
-        "Courageous", "Generous", "Thoughtful", "Mysterious", "Foolish", "Caring", "Ambitious", "Reliable", "Stubborn", "Friendly", 
-        "Impulsive", "Serene", "Bashful", "Grateful", "Fierce", "Whimsical", "Loyal", "Mysterious", "Gregarious", "Unpredictable", 
-        "Helpful", "Hesitant", "Charming", "Reclusive", "Adaptable", "Insecure", "Vivacious", "Innovative", "Doubtful", "Spontaneous", 
-        "Self-assured", "Patient", "Skeptical", "Impatient", "Passionate", "Thoughtless", "Altruistic", "Considerate", "Meticulous", "Egocentric", 
-        "Grumpy", "Warm-hearted", "Prudent", "Proud", "Sensible", "Nervous", "Dependable", "Reckless", "Artistic", "Analytical", 
-        "Humble", "Arrogant", "Tolerant", "Anxious", "Respectful", "Carefree", "Cynical", "Confused", "Resolute", "Vulnerable", 
-        "Distrustful", "Polite", "Sarcastic", "Proud", "Hopeful", "Apprehensive", "Optimistic", "Gentle", "Callous", "Amiable", 
-        "Depressed", "Relaxed", "Thoughtful", "Daring", "Irritable", "Innocent", "Decisive", "Adventurous", "Mature", "Clumsy", 
-        "Responsible", "Whimsical", "Resourceful", "Gracious", "Gullible", "Diligent", "Sociable", "Unyielding", "Stoic", "Empathetic", 
-        "Reliable", "Sarcastic", "Enigmatic", "Vibrant", "Tenacious", "Inflexible", "Intuitive", "Respectful", "Courageous", "Indecisive", 
-        "Unpredictable", "Altruistic",  "Adaptable", "Charismatic", "Discreet", "Enthusiastic", "Open-minded", "Perceptive", "Optimistic", 
+        "Disheveled", "Vengeful", "Triumphant", "Reluctant", "Jealous", "Joyful", "Lusty", "Sensuous", "Timid",
+        "Overconfident", "Agreeable", "Queasy", "Curious", "Enthusiastic", "Resilient", "Sincere",
+        "Energetic", "Pessimistic", "Resourceful", "Compassionate", "Sarcastic", "Persistent",
+        "Adventurous", "Cautious", "Cheerful", "Pensive", "Inquisitive", "Determined", "Reckless", "Indifferent", "Confident", "Gloomy",
+        "Courageous", "Generous", "Thoughtful", "Mysterious", "Foolish", "Caring", "Ambitious", "Reliable", "Stubborn", "Friendly",
+        "Impulsive", "Serene", "Bashful", "Grateful", "Fierce", "Whimsical", "Loyal", "Mysterious", "Gregarious", "Unpredictable",
+        "Helpful", "Hesitant", "Charming", "Reclusive", "Adaptable", "Insecure", "Vivacious", "Innovative", "Doubtful", "Spontaneous",
+        "Self-assured", "Patient", "Skeptical", "Impatient", "Passionate", "Thoughtless", "Altruistic", "Considerate", "Meticulous", "Egocentric",
+        "Grumpy", "Warm-hearted", "Prudent", "Proud", "Sensible", "Nervous", "Dependable", "Reckless", "Artistic", "Analytical",
+        "Humble", "Arrogant", "Tolerant", "Anxious", "Respectful", "Carefree", "Cynical", "Confused", "Resolute", "Vulnerable",
+        "Distrustful", "Polite", "Sarcastic", "Proud", "Hopeful", "Apprehensive", "Optimistic", "Gentle", "Callous", "Amiable",
+        "Depressed", "Relaxed", "Thoughtful", "Daring", "Irritable", "Innocent", "Decisive", "Adventurous", "Mature", "Clumsy",
+        "Responsible", "Whimsical", "Resourceful", "Gracious", "Gullible", "Diligent", "Sociable", "Unyielding", "Stoic", "Empathetic",
+        "Reliable", "Sarcastic", "Enigmatic", "Vibrant", "Tenacious", "Inflexible", "Intuitive", "Respectful", "Courageous", "Indecisive",
+        "Unpredictable", "Altruistic", "Adaptable", "Charismatic", "Discreet", "Enthusiastic", "Open-minded", "Perceptive", "Optimistic",
         "Determined", "Analytical", "Generous", "Honest", "Mysterious", "Pragmatic", "Contemplative",
-         "Humble", "Vulnerable", "Impulsive", "Passionate", "Eccentric", "Inquisitive", 
-        "Sensible", "Lighthearted", "Thoughtful", "Compassionate", "Relaxed", "Adventurous", "Energetic", 
-        "Introspective", "Steadfast", "Independent", 
-        "Skeptical", "Creative", "Diplomatic", "Adventurous", "Reclusive", "Selfless", "Outgoing", "Insecure", "Tenacious", 
-        "Brilliant", "Stoic", "Affectionate", "Sarcastic", "Persistent", "Sincere", "Serene", 
-        "Ambitious", "Pessimistic", "Jovial", "Modest", "Resourceful", "Playful", "Empathetic", "Sensible", 
-        "Optimistic", "Introverted", "Adventurous", 
+        "Humble", "Vulnerable", "Impulsive", "Passionate", "Eccentric", "Inquisitive",
+        "Sensible", "Lighthearted", "Thoughtful", "Compassionate", "Relaxed", "Adventurous", "Energetic",
+        "Introspective", "Steadfast", "Independent",
+        "Skeptical", "Creative", "Diplomatic", "Adventurous", "Reclusive", "Selfless", "Outgoing", "Insecure", "Tenacious",
+        "Brilliant", "Stoic", "Affectionate", "Sarcastic", "Persistent", "Sincere", "Serene",
+        "Ambitious", "Pessimistic", "Jovial", "Modest", "Resourceful", "Playful", "Empathetic", "Sensible",
+        "Optimistic", "Introverted", "Adventurous",
         "Practical", "Curious",
         "Inventive",
         "Sophisticated",
@@ -184,7 +239,7 @@
         "Discerning",
         "Exuberant"
     ];
-    descriptors = descriptors.filter((item,index) => descriptors.indexOf(item) === index)
+    descriptors = descriptors.filter((item, index) => descriptors.indexOf(item) === index)
 
     let roleList = [
         "Sister", "Boyfriend", "Boss",
@@ -257,7 +312,7 @@
         "Phlebotomist", "Landscape Architect", "Film Director",
         "Sports Coach", "Environmental Planner", "Gardener",
     ];
-    roleList = roleList.filter((item,index) => roleList.indexOf(item) === index)
+    roleList = roleList.filter((item, index) => roleList.indexOf(item) === index)
 
 
 
