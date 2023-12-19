@@ -17,8 +17,16 @@
         <br> or a <b>"Job Interview"</b>
     </p>
     <div class="center-contain">
-        <button onclick="getRandomPov()">Random <b>POV</b></button>
-        <h3 id="pov"></h3>
+        <button onclick="getRandomDescriptor()">Random <b>Descriptor</b></button>
+        <h3 id="descriptor"></h3>
+    </div>
+    <div class="center-contain">
+        <button onclick="getRandomRole()">Random <b>Occupation</b></button>
+        <h3 id="role"></h3>
+    </div>
+    <div class="center-contain">
+        <button onclick="getRandomRelationship()">Random <b>Relationship</b></button>
+        <h3 id="relationship"></h3>
     </div>
     <div class="center-contain">
         <button onclick="getRandomEnv()">Random <b>Environment</b></button>
@@ -46,11 +54,17 @@
 
 
 <script>
-    function getRandomPov() {
-        let descriptor = descriptors[randomNumber(0, descriptors.length - 1)]
+    function getRandomRole() {
         let role = roleList[randomNumber(0, roleList.length - 1)]
-        let povText = `${descriptor} ${role}`
-        document.getElementById("pov").textContent = povText;
+        document.getElementById("role").textContent = role;
+    }
+    function getRandomDescriptor() {
+        let descriptor = descriptors[randomNumber(0, descriptors.length - 1)]
+        document.getElementById("descriptor").textContent = descriptor;
+    }
+    function getRandomRelationship() {
+        let relationship = relationships[randomNumber(0, relationships.length - 1)]
+        document.getElementById("relationship").textContent = relationship;
     }
 
     function getRandomEnv() {
@@ -66,6 +80,85 @@
         let randObject = itemList[randomNumber(0, itemList.length - 1)]
         document.getElementById("object").textContent = randObject;
     }
+
+    const relationships = [
+  "Parent",
+  "Child",
+  "Sibling",
+  "Spouse",
+  "Friend",
+  "Grandparent",
+  "Grandchild",
+  "Cousin",
+  "Aunt/Uncle",
+  "Nephew/Niece",
+  "Co-worker",
+  "Boss",
+  "Mentor",
+  "Teacher",
+  "Student",
+  "Neighbor",
+  "Roommate",
+  "Acquaintance",
+  "Supervisor",
+  "Employee",
+  "Business Partner",
+  "Teammate",
+  "Fiancé/Fiancée",
+  "Ex-partner",
+  "In-Law",
+  "Godparent",
+  "Godchild",
+  "Guardian",
+  "Ward",
+  "Rival",
+  "Ally",
+  "Confidant",
+  "Pen Pal",
+  "Travel Buddy",
+  "Study Buddy",
+  "Workout Buddy",
+  "Volunteer Partner",
+  "Companion",
+  "Consultant",
+  "Client",
+  "Customer",
+  "Service Provider",
+  "Agent",
+  "Artist/Muse",
+  "Fan",
+  "Idol",
+  "Apprentice",
+  "Master",
+  "Advisor",
+  "Advocate",
+  "Archenemy",
+  "Benefactor",
+  "Colleague",
+  "Frenemy",
+  "Journey Partner",
+  "Mentee",
+  "Protege",
+  "Sponsor",
+  "Co-founder",
+  "Investor",
+  "Landlord/Tenant",
+  "Seller/Buyer",
+  "Siblings-in-Law",
+  "Step-Parent",
+  "Step-Child",
+  "Step-Sibling",
+  "Step-Grandparent",
+  "Step-Grandchild",
+  "Step-Cousin",
+  "Step-Aunt/Uncle",
+  "Step-Nephew/Niece",
+  "Teaching Assistant",
+  "Boss's Boss",
+  "Intern",
+  // Add more relationships as needed
+];
+
 
     const eventList = [
         "Birthday Party", "Wedding", "Graduation Ceremony",
