@@ -16,9 +16,10 @@
             <h2>A series of exercises and resources</h2>
         </div>
 
+        <div>
             <legend>Select Tags</legend>
-        <form style="display: flex; flex-direction: row;">
-            <fieldset>
+        <form style="display: grid; grid-template-columns: repeat(2, minmax(10px, 1fr));">
+            <fieldset class="field">
                 <div class="tag-item">
                     <input type="checkbox" id="listening" name="listening" />
                     <label for="listening">listening</label>
@@ -40,7 +41,7 @@
                     <label for="exercise">exercise</label>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset class="field">
 
                 <div class="tag-item">
                     <input type="checkbox" id="trick" name="trick" />
@@ -64,7 +65,7 @@
 
             </fieldset>
 
-             <fieldset>
+             <fieldset class="field">
 
                 <div class="tag-item">
                     <input type="checkbox" id="heightening" name="heightening" />
@@ -74,6 +75,7 @@
 
             </fieldset>
             </form>
+        </div>
 
 
 
@@ -91,6 +93,10 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+    }
+
+    .field{
+        min-width: 35%;
     }
 
     .tag-item {
