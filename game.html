@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="common.js"></script>
+</head>
+
+<body class="center-contain">
+    <div class="center-contain" style="flex-direction: column;">
+
+        <button id="shuffle" onclick="shuffle()">Shuffle</button>
+        <div id="main" class="center-contain" style="flex-direction: column;">
+
+        </div>
+    </div>
+</body>
+
+<style>
+    .center-contain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .flashCard {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        border: solid grey;
+        width: 9em;
+        height: 4em;
+        margin-top: .5em;
+        margin-bottom: .5em;
+    }
+</style>
+
+<script>
+
+
+    let terms = [
+        "Pilot - Hospital",
+        "Event Planner - School",
+        "Architect - Library",
+        "Electrician - Gym",
+        "Referee - Coffee Shop",
+        "Biologist - Stadium",
+        "Flight Attendant - Theater",
+        "Songwriter - Restaurant",
+        "Dentist - Park",
+        "Graphic Designer - Airport",
+        "Meteorologist - Zoo",
+        "Park Ranger - Beach",
+        "Translator - Museum",
+        "Geologist - Concert Hall",
+        "Barista - Office",
+        "Construction Worker - Farm",
+        "Economist - Cemetery",
+        "Zookeeper - Church",
+        "Interior Designer - Laboratory",
+        "Museum Curator - Amusement Park",
+        "Pharmaceutical Sales Rep - Factory",
+        "Yoga Instructor - Spa",
+        "Botanist - Shopping Center",
+        "Nutritionist - Hotel",
+        "Geographer - University",
+        "Pharmacist - Pharmacy",
+        "Mechanic - Garage",
+        "Realtor - Orphanage",
+        "Librarian - Playground",
+        "Hair Stylist - Daycare Center",
+        "Chemist - Gymnasium",
+        "Landscaper - Courthouse",
+        "Biomedical Engineer - Workshop",
+        "Personal Trainer - Greenhouse",
+        "Speech Therapist - Aquarium",
+        "Surveyor - Temple",
+        "Acrobat - Observatory",
+        "Firefighter - Vineyard",
+        "School Nurse - Studio",
+        "Politician - Casino",
+        "Dog Catcher - Concert Venue",
+        "Social Worker - Bakery",
+        "Mentor - Brewery",
+        "Soldier - Car Dealership",
+        "Lawyer - Film Studio",
+        "Teacher - Art Gallery",
+        "Chef - Community Center",
+        "Paramedic - Animal Shelter",
+        "Principal - Recording Studio",
+        "Mayor - Water Park",
+        "Coach - Bowling Alley",
+        "Paralegal - Police Station",
+        "Janitor - Fire Station",
+        "Pediatrician - Arcade",
+        "Clergy - Clinic",
+        "Accountant - Lodge",
+        "Lifeguard - Farmhouse",
+        "Detective - Warehouse",
+        "Director - Recycling Center",
+        "Plumber - Fitness Center",
+        "Babysitter - Dance Studio",
+        "Judge - Film Set",
+        "Usher - Auction House",
+        "Attorney - Art Studio",
+        "Landlord - Theatre",
+        "Police Officer - Hospital",
+        "Artist - Shopping Mall",
+        "Nanny - Cinema",
+        "Senator - Bar",
+        "Investigator - Bookstore",
+        "Campaign Manager - Circus",
+        "Technician - Carnival",
+        "Home Health Aide - Salon",
+        "Sheriff - Resort",
+        "Archaeologist - Campground",
+        "Fire Marshal - Skating Rink",
+        "Financial Advisor - Nightclub",
+        "Veterinarian - Ski Resort",
+        "Notary Public - Paintball Arena",
+        "Housekeeper - Theme Park",
+        "Chief of Staff - Botanical Garden",
+        "Researcher - Race Track",
+        "Taxi Driver - Radio Station",
+        "HR Manager - Planetarium",
+        "Physical Therapist - Bowling Club",
+        "Camera Man" - "Butcher Shop",
+        "Research Scientist - Candy Store",
+        "Security Guard - Farmers Market",
+        "Animator - Food Truck",
+        "Surgeon - Ice Cream Parlor",
+        "Astronomer - Juice Bar",
+        "Fashion Designer - Liquor Store",
+        "Conductor - Deli",
+        "Pet Groomer - Pet Store",
+        "Martial Arts Instructor - Toy Store",
+        "Cinematographer - Antique Shop",
+        "Cartographer - Pawn Shop",
+        "Epidemiologist - Home Depot",
+        "Event Coordinator - Clothing Boutique",
+        "Data Analyst - Shoe store"
+    ]
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+    function shuffle(){
+        console.log("shuff")
+        onLoad(true)
+    }
+
+    function onLoad(shuffle) {
+        let outputHtmlArray = []
+        for (let i = 0; i < terms.length; i++) {
+            outputHtmlArray.push(`<div class='flashCard'>${i + 1}</div>`)
+        }
+        if(shuffle){shuffleArray(outputHtmlArray)}
+        let outputHtml = outputHtmlArray.join('')
+
+        document.querySelector("#main").innerHTML = outputHtml;
+
+        let flashCards = document.querySelectorAll(".flashCard")
+        for (const fc of flashCards) {
+            fc.addEventListener("click", (e) => {
+                if (e.target.showingTerm) {
+                    e.target.showingTerm = false
+                    e.target.innerHTML = e.target.term
+                } else {
+                    e.target.term = e.target.innerHTML - 1
+                    e.target.innerHTML = terms[e.target.innerHTML - 1]
+                    e.target.showingTerm = true
+                }
+            })
+        }
+    }
+    onLoad(false)
+
+</script>
+
+</html>
