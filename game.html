@@ -172,7 +172,7 @@
             fc.addEventListener("click", (e) => {
                 if (e.target.showingTerm) {
                     e.target.showingTerm = false
-                    e.target.innerHTML = e.target.term
+                    e.target.innerHTML = e.target.term + 1
                 } else {
                     e.target.term = e.target.innerHTML - 1
                     e.target.innerHTML = terms[e.target.innerHTML - 1]
