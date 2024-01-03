@@ -13,6 +13,7 @@
     <div class="center-contain" style="flex-direction: column;">
         min<input id="min" type="number">
         max<input id="max" type="number">
+        Hide Answers<input id="hideAnswers" type="checkbox">
         <button id="go" style="margin-top:2em;">Go</button>
         <div class="card">
             <div id="term"></div>
@@ -184,6 +185,7 @@
     })
 
     function go(min, max) {
+        console.log(document.getElementById('hideAnswers').checked)
         let answerSlots = document.querySelector("#choice-list").children
         let answerSlot = document.querySelector("#answer")
         console.log(answerSlot)
@@ -195,7 +197,11 @@
         shuffleArray(randomChoices)
         document.querySelector('#term').innerHTML = randomTerm
         for (let i = 0; i < 4; i++) {
-            answerSlots[i].innerHTML = randomChoices[i]
+            if(!document.getElementById('hideAnswers').checked){
+                answerSlots[i].innerHTML = randomChoices[i]
+            }else{
+                answerSlots[i].innerHTML = ""
+            }
             answerSlots[i].addEventListener("click", (e) => {
                 e.preventDefault()
                 document.getElementById("answer").innerHTML = correctAnswer
