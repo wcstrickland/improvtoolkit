@@ -163,16 +163,17 @@
     }
     let min = document.getElementById('min').value
     let max = document.getElementById('max').value
-    document.getElementById("min").addEventListener("change", (e)=>{
+    document.getElementById("min").addEventListener("change", (e) => {
         min = e.target.value
     })
-    document.getElementById("max").addEventListener("change", (e)=>{
+    document.getElementById("max").addEventListener("change", (e) => {
         max = e.target.value
     })
+
     function go(min, max) {
         let lastCorrect = document.getElementsByClassName("correct")
         lastCorrect.className = "choices"
-        let randomTerm = randomNumber(min, max)
+        let randomTerm = randomNumber(parseInt(min), parseInt(max))
         let correctAnswer = terms[randomTerm]
         let randomChoices = [getRandomWrongAnswer(min, max, correctAnswer),
         getRandomWrongAnswer(min, max, correctAnswer),
@@ -192,8 +193,8 @@
             })
         }
     }
-    document.getElementById("go").addEventListener("click", (e)=>{
-        go(min,max)
+    document.getElementById("go").addEventListener("click", (e) => {
+        go(min, max)
     })
 
 </script>
