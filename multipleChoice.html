@@ -16,12 +16,13 @@
         <button id="go" style="margin-top:2em;">Go</button>
         <div class="card">
             <div id="term"></div>
-            <ol>
+            <ol id="choice-list">
                 <li class="choices"></li>
                 <li class="choices"></li>
                 <li class="choices"></li>
                 <li class="choices"></li>
             </ol>
+            <div id="answer"></div>
 
         </div>
     </div>
@@ -161,6 +162,18 @@
             return terms[randomNumberInstance]
         }
     }
+
+    function getWrongAnswers(min, max, correct) {
+        let usedAnswers = []
+        while (usedAnswers.length < 3) {
+            let wrong = getRandomWrongAnswer(min, max, correct)
+            if (!usedAnswers.includes(wrong)) {
+                usedAnswers.push(wrong)
+            }
+        }
+        return usedAnswers
+    }
+
     let min = document.getElementById('min').value
     let max = document.getElementById('max').value
     document.getElementById("min").addEventListener("change", (e) => {
@@ -171,25 +184,21 @@
     })
 
     function go(min, max) {
-        let lastCorrect = document.getElementsByClassName("correct")
-        lastCorrect.className = "choices"
+        let answerSlots = document.querySelector("#choice-list").children
+        let answerSlot = document.querySelector("#answer")
+        console.log(answerSlot)
+        answerSlot.innerHTML = ""
         let randomTerm = randomNumber(parseInt(min), parseInt(max))
         let correctAnswer = terms[randomTerm]
-        let randomChoices = [getRandomWrongAnswer(min, max, correctAnswer),
-        getRandomWrongAnswer(min, max, correctAnswer),
-        getRandomWrongAnswer(min, max, correctAnswer),
-            correctAnswer]
+        let randomChoices = getWrongAnswers(min, max, correctAnswer)
+        randomChoices.push(correctAnswer)
         shuffleArray(randomChoices)
         document.querySelector('#term').innerHTML = randomTerm
-        let answerSlots = document.querySelectorAll(".choices")
         for (let i = 0; i < 4; i++) {
             answerSlots[i].innerHTML = randomChoices[i]
             answerSlots[i].addEventListener("click", (e) => {
-                for (const answerSlot of answerSlots) {
-                    if (answerSlot.innerHTML === correctAnswer) {
-                        answerSlot.className = "correct"
-                    }
-                }
+                e.preventDefault()
+                document.getElementById("answer").innerHTML = correctAnswer
             })
         }
     }
