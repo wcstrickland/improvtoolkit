@@ -21,24 +21,28 @@
         <h3 id="descriptor"></h3>
     </div>
     <div class="center-contain">
+        <button onclick="getRandomNegative()">Random <b>Flaw</b></button>
+        <h3 id="negative"></h3>
+    </div>
+    <div class="center-contain">
         <button onclick="getRandomRole()">Random <b>Occupation</b></button>
         <h3 id="role"></h3>
     </div>
     <div class="center-contain">
-        <button onclick="getRandomRelationship()">Random <b>Relationship</b></button>
-        <h3 id="relationship"></h3>
+        <button onclick="getRandomObject()">Random <b>Object</b></button>
+        <h3 id="object"></h3>
     </div>
     <div class="center-contain">
         <button onclick="getRandomEnv()">Random <b>Environment</b></button>
         <h3 id="environ"></h3>
     </div>
     <div class="center-contain">
-        <button onclick="getRandomEvent()">Random <b>Event</b></button>
-        <h3 id="event"></h3>
+        <button onclick="getRandomRelationship()">Random <b>Relationship</b></button>
+        <h3 id="relationship"></h3>
     </div>
     <div class="center-contain">
-        <button onclick="getRandomObject()">Random <b>Object</b></button>
-        <h3 id="object"></h3>
+        <button onclick="getRandomEvent()">Random <b>Event</b></button>
+        <h3 id="event"></h3>
     </div>
 </body>
 
@@ -67,6 +71,11 @@
         document.getElementById("relationship").textContent = relationship;
     }
 
+    function getRandomNegative() {
+        let negative = negativeTraits[randomNumber(0, negativeTraits.length - 1)]
+        document.getElementById("negative").textContent = negative;
+    }
+
     function getRandomEnv() {
         let location = locationList[randomNumber(0, locationList.length - 1)]
         document.getElementById("environ").textContent = location;
@@ -82,82 +91,82 @@
     }
 
     const relationships = [
-  "Parent",
-  "Child",
-  "Sibling",
-  "Spouse",
-  "Friend",
-  "Grandparent",
-  "Grandchild",
-  "Cousin",
-  "Aunt/Uncle",
-  "Nephew/Niece",
-  "Co-worker",
-  "Boss",
-  "Mentor",
-  "Teacher",
-  "Student",
-  "Neighbor",
-  "Roommate",
-  "Acquaintance",
-  "Supervisor",
-  "Employee",
-  "Business Partner",
-  "Teammate",
-  "Fiancé/Fiancée",
-  "Ex-partner",
-  "In-Law",
-  "Godparent",
-  "Godchild",
-  "Guardian",
-  "Ward",
-  "Rival",
-  "Ally",
-  "Confidant",
-  "Pen Pal",
-  "Travel Buddy",
-  "Study Buddy",
-  "Workout Buddy",
-  "Volunteer Partner",
-  "Companion",
-  "Consultant",
-  "Client",
-  "Customer",
-  "Service Provider",
-  "Agent",
-  "Artist/Muse",
-  "Fan",
-  "Idol",
-  "Apprentice",
-  "Master",
-  "Advisor",
-  "Advocate",
-  "Archenemy",
-  "Benefactor",
-  "Colleague",
-  "Frenemy",
-  "Journey Partner",
-  "Mentee",
-  "Protege",
-  "Sponsor",
-  "Co-founder",
-  "Investor",
-  "Landlord/Tenant",
-  "Seller/Buyer",
-  "Siblings-in-Law",
-  "Step-Parent",
-  "Step-Child",
-  "Step-Sibling",
-  "Step-Grandparent",
-  "Step-Grandchild",
-  "Step-Cousin",
-  "Step-Aunt/Uncle",
-  "Step-Nephew/Niece",
-  "Teaching Assistant",
-  "Boss's Boss",
-  "Intern",
-  // Add more relationships as needed
-];
+        "Parent",
+        "Child",
+        "Sibling",
+        "Spouse",
+        "Friend",
+        "Grandparent",
+        "Grandchild",
+        "Cousin",
+        "Aunt/Uncle",
+        "Nephew/Niece",
+        "Co-worker",
+        "Boss",
+        "Mentor",
+        "Teacher",
+        "Student",
+        "Neighbor",
+        "Roommate",
+        "Acquaintance",
+        "Supervisor",
+        "Employee",
+        "Business Partner",
+        "Teammate",
+        "Fiancé/Fiancée",
+        "Ex-partner",
+        "In-Law",
+        "Godparent",
+        "Godchild",
+        "Guardian",
+        "Ward",
+        "Rival",
+        "Ally",
+        "Confidant",
+        "Pen Pal",
+        "Travel Buddy",
+        "Study Buddy",
+        "Workout Buddy",
+        "Volunteer Partner",
+        "Companion",
+        "Consultant",
+        "Client",
+        "Customer",
+        "Service Provider",
+        "Agent",
+        "Artist/Muse",
+        "Fan",
+        "Idol",
+        "Apprentice",
+        "Master",
+        "Advisor",
+        "Advocate",
+        "Archenemy",
+        "Benefactor",
+        "Colleague",
+        "Frenemy",
+        "Journey Partner",
+        "Mentee",
+        "Protege",
+        "Sponsor",
+        "Co-founder",
+        "Investor",
+        "Landlord/Tenant",
+        "Seller/Buyer",
+        "Siblings-in-Law",
+        "Step-Parent",
+        "Step-Child",
+        "Step-Sibling",
+        "Step-Grandparent",
+        "Step-Grandchild",
+        "Step-Cousin",
+        "Step-Aunt/Uncle",
+        "Step-Nephew/Niece",
+        "Teaching Assistant",
+        "Boss's Boss",
+        "Intern",
+        // Add more relationships as needed
+    ];
 
 
     const eventList = [
@@ -241,7 +250,7 @@
         "Post-it flags", "Envelopes", "Mailing labels", "Rubber bands",
         "Tape dispenser", "Correction fluid", "Glue stick", "Presentation clicker",
         "Hole puncher", "Scotch tape dispenser", "Battery charger", "Battery tester",
-        "Cord organizer", 
+        "Cord organizer",
     ];
 
 
@@ -407,7 +416,59 @@
     ];
     roleList = roleList.filter((item, index) => roleList.indexOf(item) === index)
 
-
+    let negativeTraits = [
+        "arrogant",
+        "selfish",
+        "manipulative",
+        "dishonest",
+        "jealous",
+        "lazy",
+        "cruel",
+        "pessimistic",
+        "judgmental",
+        "impulsive",
+        "greedy",
+        "stubborn",
+        "insensitive",
+        "narcissistic",
+        "unreliable",
+        "hostile",
+        "paranoid",
+        "indecisive",
+        "vindictive",
+        "hypocritical",
+        "impatient",
+        "cowardly",
+        "boastful",
+        "envious",
+        "apathetic",
+        "cynical",
+        "intolerant",
+        "materialistic",
+        "deceitful",
+        "volatile",
+        "aggressive",
+        "egotistical",
+        "petty",
+        "rude",
+        "insecure",
+        "controlling",
+        "vain",
+        "disloyal",
+        "callous",
+        "narrow-minded",
+        "gossipy",
+        "irresponsible",
+        "unforgiving",
+        "resentful",
+        "obnoxious",
+        "condescending",
+        "ignorant",
+        "inconsiderate",
+        "malicious",
+        "spiteful"
+    ];
+    negativeTraits = negativeTraits.filter((item, index) => negativeTraits.indexOf(item) === index)
 
 
 </script>
