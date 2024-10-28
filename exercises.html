@@ -10,88 +10,82 @@
 </head>
 
 <body style="display: flex; flex-direction: column;">
-    <div class="center-contain">
-
-        <div>
-            <h2>A series of exercises and resources</h2>
-        </div>
-
-        <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
-            <h3 style="margin-right:1em;">OR</h3>
-            <!-- Rounded switch -->
-            <label class="switch">
-                <input id="toggle"  type="checkbox">
-                <span class="slider round"></span>
-            </label>
-            <h3 style="margin-left:1em;">AND</h3>
-        </div>
-
-        <div style="margin-top:1em;">
-            <legend>Select Tags</legend>
-            <form style="display: grid; grid-template-columns: repeat(2, minmax(10px, 1fr));">
-                <fieldset class="field">
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="listening" name="listening" />
-                        <label for="listening">listening</label>
-                    </div>
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="warmup" name="warmup" />
-                        <label for="warmup">warmup</label>
-                    </div>
-
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="justification" name="justification" />
-                        <label for="justification">justification</label>
-                    </div>
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="exercise" name="exercise" />
-                        <label for="exercise">exercise</label>
-                    </div>
-                </fieldset>
-                <fieldset class="field">
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="trick" name="trick" />
-                        <label for="trick">trick</label>
-                    </div>
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="resource" name="resource" />
-                        <label for="resource">resource</label>
-                    </div>
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="initiation" name="initiation" />
-                        <label for="initiation">initiation</label>
-                    </div>
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="game" name="game" />
-                        <label for="game">game</label>
-                    </div>
-
-                </fieldset>
-
-                <fieldset class="field">
-
-                    <div class="tag-item">
-                        <input class="tag-input" type="checkbox" id="heightening" name="heightening" />
-                        <label for="heightening">heightening</label>
-                    </div>
-
-
-                </fieldset>
-            </form>
-        </div>
-
-
-
-
-    </div>
+    <div class="center-contain"></div>
     <div id="exercises">
+
+        <h1>Exercises</h1>
+
+        <h2>out of your head</h2>
+        <ul>
+            <li>hey fred shnieder</li>
+            <li>beastie rap</li>
+            <li>bunny bunny</li>
+            <li>crazy eights</li>
+        </ul>
+
+        <h2>group mind</h2>
+        <ul>
+            <li>zip zap zop</li>
+            <li>pass the clap</li>
+            <li>point, yes, move</li>
+            <li>follow the follower</li>
+            <li>yes lets</li>
+            <li>blind counting</li>
+        </ul>
+
+        <h2>memory / listening</h2>
+        <ul>
+            <li>red ball, blue ball</li>
+            <li>sequence of sequences</li>
+            <li>describe shared object</li>
+            <li>ninja star, tomahawk, big wet fish</li>
+            <li>5 things</li>
+            <li>story stealing</li>
+        </ul>
+
+        <h2>object work</h2>
+        <ul>
+            <li>pass the magic clay</li>
+        </ul>
+
+        <h2>mini improv scene</h2>
+        <ul>
+            <li>circle of what, where, who</li>
+            <li>what did you just say</li>
+            <li>three line scenes</li>
+            <li>woosh bang pow</li>
+            <li>you seem</li>
+            <li>did you hear bout</li>
+            <li>shitty gifts</li>
+        </ul>
+
+        <h2>game</h2>
+        <ul>
+            <li>beat the hell outta the game</li>
+            <li>thats me / bad guy</li>
+            <li>pattern game</li>
+        </ul>
+
+
+        <h1>Scene Drills</h1>
+
+        <h2>Basics</h2>
+        <ul>
+            <li>change the location / who mid scene</li>
+        </ul>
+
+        <h2>out of your head</h2>
+
+        <h2>group mind</h2>
+
+        <h2>memory / listening</h2>
+        <ul>
+            <li>emotional noise</li>
+        </ul>
+
+        <h2>object work</h2>
+
+        <h2>game</h2>
 
     </div>
 </body>
@@ -177,136 +171,6 @@
     }
 </style>
 
-<script>
-
-    let inputs = document.getElementsByClassName("tag-input")
-    for (const input of inputs) {
-        input.addEventListener("click", (e) => {
-            let val = e.target.id
-            if (e.target.checked) {
-                addTag(val)
-            } else {
-                removeTag(val)
-            }
-            populate()
-        })
-    }
-
-    function populate() {
-        let output = "<ul>"
-        if(toggleState === "or"){
-            exercises.forEach(element => {
-                if (tags.some(x => element.tags.includes(x))) {
-                    let objTags = element.tags.join(", ")
-                    output += `<li><a href="${element.url}" target='_blank'>${element.title} </a>  [ ${objTags} ]</li>`
-                }
-            });
-        }else{
-            exercises.forEach(element => {
-                if (tags.every(x => element.tags.includes(x))) {
-                    let objTags = element.tags.join(", ")
-                    output += `<li><a href="${element.url}" target='_blank'>${element.title} </a>  [ ${objTags} ]</li>`
-                }
-            });
-        }
-        output += "</ul>"
-        let exes = document.querySelector('#exercises')
-        exes.innerHTML = output
-    }
-
-
-    function addTag(tag) {
-        tags.push(tag)
-    }
-    function removeTag(tag) {
-        tags = tags.filter(x => x !== tag)
-    }
-
-
-    let tags = []
-    let toggleState = "or"
-
-    function toggle(){
-        if(toggleState==="or"){
-            toggleState = "and"
-        }else{
-            toggleState = "or"
-        }
-        populate()
-    }
-
-
-    let exercises = [
-        {
-            "url": "https://wiki.improvresourcecenter.com/index.php?title=One_Word_Story",
-            "title": "one word story",
-            "tags": ["warmup", "exercise"],
-        },
-        {
-            "url": "https://www.learnimprov.com/yes-and/",
-            "title": "yes and",
-            "tags": ["listening", "warmup", "exercise"],
-        },
-        {
-            "url": "https://www.reddit.com/r/improv/comments/9xs64p/will_hinesucb_accusation_exercise/",
-            "title": "Accusation",
-            "tags": ["justification", "exercise"],
-        },
-        {
-            "url": "./exercises/bigMomentBefore.html",
-            "title": "Big Moment Before",
-            "tags": ["initiation", "trick", "exercise"],
-        },
-        {
-            "url": "./exercises/doItAgain.html",
-            "title": "Do it Again",
-            "tags": ["game", "trick", "exercise"],
-        },
-        {
-            "url": "./exercises/confession.html",
-            "title": "When in doubt, Confess",
-            "tags": ["exercise", "trick", "justification"],
-        },
-        {
-            "url": "./exercises/whatsReallyGoingOn.html",
-            "title": "Whats really going on?",
-            "tags": ["trick"],
-        },
-        {
-            "url": "./exercises/sadAndPersonal.html",
-            "title": "Get sad and personal",
-            "tags": ["trick"],
-        },
-        {
-            "url": "./exercises/makeThingsWorse.html",
-            "title": "Make things worse",
-            "tags": ["trick", "exercise"],
-        },
-        {
-            "url": "./exercises/getSpecific.html",
-            "title": "Get specific",
-            "tags": ["trick"],
-        },
-        {
-            "url": "./exercises/chooseToLose.html",
-            "title": "Choose to lose",
-            "tags": ["trick", "exercise"],
-        },
-        {
-            "url": "./exercises/debate.html",
-            "title": "Make it a debate",
-            "tags": ["trick", "exercise"],
-        },
-        {
-            "url": "./exercises/bullshit.html",
-            "title": "Bullshit!",
-            "tags": ["justification", "exercise", "heightening", "game"],
-        },
-    ]
-    let tog = document.querySelector('#toggle')
-    tog.addEventListener('click', toggle)
-    populate()
-
-</script>
+<script></script>
 
 </html>
