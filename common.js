@@ -14,3 +14,4 @@ function shuffleArray(array) {
         array[j] = temp;
     }
 }
+let base = "https://wcstrickland.github.io/improvtoolkit/"
