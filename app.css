@@ -20,6 +20,9 @@
   align-items: center;
   text-align: center;
   margin: auto;
+  @media (max-width: 800px){
+    margin:2em;
+  }
   li {
     align-items: start;
     text-align: start;
