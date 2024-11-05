@@ -48,14 +48,6 @@
             <ul>
                 <li>I think, feel, have, want, am</li>
                 <li>work, home, play</li>
-                <li><span class="title">Hitchhiker</span>
-                    <p class="instruction">2 actors in a car, everyone else is lined up. 2 actors must establish a
-                        relationship and why they are in the car. Once relationship is established, 3rd actor sticks
-                        thumb out as an exaggerated character and in a characteristic voice asks if they're headed
-                        to (destination). Original 2 actors immediately take on all the characteristics of Actor 3.
-                        They cruise down the road for a bit, having a grand time. Then driver makes and excuse
-                        to bail. Actor 3 gets in front seat and the drill starts over.</p>
-                </li>
             </ul>
 
             <h2>memory / listening</h2>
@@ -139,14 +131,12 @@
 </body>
 
 <style>
-    .instruction {
+    .instruction{
         display: none;
     }
-
-    .title {
+    .title{
         color: #2196F3;
     }
-
     .center-contain {
         display: flex;
         flex-direction: column;
@@ -228,24 +218,24 @@
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded',function(){
         let titles = document.querySelectorAll(".title")
         for (const title of titles) {
             let parent = title.parentElement
             let sibling = parent.querySelector("p")
-            let siblingState = function () {
+            let siblingState = function(){
                 return getComputedStyle(sibling).getPropertyValue("display")
             }
-            title.addEventListener("click", function () {
-                if (siblingState() == "none") {
-                    sibling.style.display = "flex"
-                } else {
-                    sibling.style.display = "none"
+            title.addEventListener("click", function(){
+                if(siblingState() == "none"){
+                    sibling.style.display="flex"
+                }else{
+                    sibling.style.display="none"
                 }
             })
         }
     })
-
+    
 </script>
 
 </html>
