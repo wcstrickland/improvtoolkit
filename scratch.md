@@ -1,18 +1,19 @@
-<li><span class="title">Clover</span>- start with one word, word association until we arrive back at original word</li>
-<li><span class="title">Fingy</span>- index fingers join in middle. Say Fingy. One person initiates silly movement from
-finger, rest follow, finger eventually lands back I'm center, say Fingy to finish</li>
-<li>5 things</li>
-<li>Mind Meld</li>
+<!-- <li><span class="title">Clover</span><p class="instruction">start with one word, word association until we arrive back at original word</p></li> -->
+<!-- <li><span class="title">Fingy</span><p class="instruction">index fingers join in middle. Say Fingy. One person initiates silly movement from
+finger, rest follow, finger eventually lands back I'm center, say Fingy to finish</p></li> -->
+<!-- <li>5 things</li>
+<li>Mind Meld</li> -->
 
-<li><span class="title">Fortunately/Unfortunately</span><p>Players tell story one person at a time, each subsequent player
-must begin their part of the story with "fortunately/un"</p></li>
+<!-- <li><span class="title">Fortunately/Unfortunately</span><p>Players tell story one person at a time, each subsequent player
+must begin their part of the story with "fortunately/un"</p></li> -->
 
 <li><span class="title">"Did ya ever"</span><p></p></li>
 
-<li><span class="title">Distillation</span>. pair in scene. 1 min scene. After that each player only gets 3 lines to portray
-the same scene. After that, each player only gets 1 line
-"it's Tuesday". One actor says something rather mundane. The other actor completely
-overreacts in a positive manner then must justify their reaction.</li>
+<!-- <li><span class="title">Distillation</span><p class="instruction">pair in scene. 1 min scene. After that each player only gets 3 lines to portray
+the same scene. After that, each player only gets 1 line</p></li> -->
+
+<!-- <li><span class="title">it's Tuesday</span><p class="instruction"> One actor says something rather mundane. The other actor completely
+overreacts in a positive manner then must justify their reaction.</p></li> -->
 
 <!-- <li><span class="title">Hitchhiker</span><p class="instruction">2 actors in a car, everyone else is lined up. 2 actors must establish a
 relationship and why they are in the car. Once relationship is established, 3rd actor sticks
@@ -25,15 +26,15 @@ to bail. Actor 3 gets in front seat and the drill starts over.</p></li> -->
 own sentence. Scene partner must complete the sentence then start a new sentence which
 then they cannot complete. And on and on.</p></li> -->
 
-<li><span class="title">Card Status Murder</span><p class="instruction">4 players are each given a random card from a deck. Card indicates
+<!-- <li><span class="title">Card Status Murder</span><p class="instruction">4 players are each given a random card from a deck. Card indicates
 status. Scene must play out with each acting out their own status. During scene players
 must die in order lowest to highest status. When one person is left, they are the killer and
-must give a monologue explaining how they did it and why.</p></li>
+must give a monologue explaining how they did it and why.</p></li> -->
 
-<li><span class="title">"Little Voice"</span><p class="instruction">Actor B is seated off stage. Actor A walks onto stage, they are on their way
+<!-- <li><span class="title">"Little Voice"</span><p class="instruction">Actor B is seated off stage. Actor A walks onto stage, they are on their way
 to/from somewhere. Actor B is the voice of a small imaginary creature who can talk.
 Actor A immediately sees them, honestly reacts, and makes an obvious statement about
-the creature so they audience immediately knows.</p></li>
+the creature so they audience immediately knows.</p></li> -->
 
 <li>What's In the Kitchen?</li>
 
