@@ -263,6 +263,7 @@
     function buildNode(ex) {
         let liNode = document.createElement("li")
         let spanNode = document.createElement("span")
+        liNode.style.marginBottom = ".5em"
         spanNode.className = "title"
         spanNode.innerText = ex.title
         spanNode.style.cursor = "pointer"
