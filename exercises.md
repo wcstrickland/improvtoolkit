@@ -101,21 +101,8 @@ to either corroborate the story or challenge it.
 responds with 'Well fortunately...' and presents a way to overcome the obstacles.
 
 <li>good blood, bad blood</li>
-<li>Mind Meld</li>
-<li>I think, feel, have, want, am</li>
-<li>work, home, play</li>
-<li>story stealing</li>
 <li>three line scenes</li>
-<li>you seem</li>
-<li>thats me / bad guy</li>
 <li>change the location / who mid scene</li>
 <li>say a line, then say what it adds to the scene</li>
-<li>find a way to lose</li>
-<li>start every line with I, you, or we</li>
 <li>premeditate a big choice and use it to navigate</li>
 <li>stop talking and then wait for the other person to talk</li>
-<li>numbers, letters, categories tagouts</li>
-<li>super villain</li>
-<p>A:Accusation, B:Accept as super villain, A:sympathetic response </p>
-<li>own it</li>
-<p>same as above but you accept and justify as a normal person</p>
