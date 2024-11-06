@@ -118,14 +118,8 @@ to either corroborate the story or challenge it.
 responds with "Well fortunately..." and presents a way to overcome the obstacles.
 
 <li>not just yes, hell yes</li>
-<li>hey fred shnieder</li>
-<li>beastie rap</li>
-<li>bunny bunny</li>
-<li>crazy eights</li>
 <li>good blood, bad blood</li>
 
-<li>zip zap zop</li>
-<li>pass the clap</li>
 <li>point, yes, move</li>
 <li>Mind Meld</li>
 <li>follow the follower</li>
@@ -135,19 +129,16 @@ responds with "Well fortunately..." and presents a way to overcome the obstacles
 <li>I think, feel, have, want, am</li>
 <li>work, home, play</li>
 
-<li>red ball, blue ball</li>
+<!-- <li>red ball, blue ball</li> -->
 <li>sequence of sequences</li>
 <li>describe shared object</li>
-<li>ninja star, tomahawk, big wet fish</li>
-<li>5 things</li>
+<!-- <li>ninja star, tomahawk, big wet fish</li> -->
 <li>story stealing</li>
 
-<li>pass the magic clay</li>
 
 <li>circle of what, where, who</li>
 <li>what did you just say</li>
 <li>three line scenes</li>
-<li>woosh bang pow</li>
 <li>you seem</li>
 <li>did you hear bout</li>
 <li>shitty gifts</li>
