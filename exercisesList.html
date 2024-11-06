@@ -213,58 +213,58 @@
     orAndSwitch.addEventListener("change", function () {
         if (this.checked) {
             orAnd = true
-            filters = {
-                "sizes": {
-                    "duo": true,
-                    "circle": true,
-                    "small": true,
-                    "big": true
-                },
-                "levels": {
-                    "easy": true,
-                    "medium": true,
-                    "hard": true
-                },
-                "tags": {
-                    "freedom": true,
-                    "group mind": true,
-                    "pov": true,
-                    "memory": true,
-                    "listening": true,
-                    "object work": true,
-                    "game": true,
-                    "status": true,
-                    "justification": true
-                }
-            }
-            document.querySelectorAll(".filterBox").forEach(x => x.checked = true)
+            // filters = {
+            //     "sizes": {
+            //         "duo": true,
+            //         "circle": true,
+            //         "small": true,
+            //         "big": true
+            //     },
+            //     "levels": {
+            //         "easy": true,
+            //         "medium": true,
+            //         "hard": true
+            //     },
+            //     "tags": {
+            //         "freedom": true,
+            //         "group mind": true,
+            //         "pov": true,
+            //         "memory": true,
+            //         "listening": true,
+            //         "object work": true,
+            //         "game": true,
+            //         "status": true,
+            //         "justification": true
+            //     }
+            // }
+            // document.querySelectorAll(".filterBox").forEach(x => x.checked = true)
         } else {
             orAnd = false
-            filters = {
-                "sizes": {
-                    "duo": false,
-                    "circle": false,
-                    "small": false,
-                    "big": false
-                },
-                "levels": {
-                    "easy": false,
-                    "medium": false,
-                    "hard": false
-                },
-                "tags": {
-                    "freedom": false,
-                    "group mind": false,
-                    "pov": false,
-                    "memory": false,
-                    "listening": false,
-                    "object work": false,
-                    "game": false,
-                    "status": false,
-                    "justification": false
-                }
-            }
-            document.querySelectorAll(".filterBox").forEach(x => x.checked = false)
+            // filters = {
+            //     "sizes": {
+            //         "duo": false,
+            //         "circle": false,
+            //         "small": false,
+            //         "big": false
+            //     },
+            //     "levels": {
+            //         "easy": false,
+            //         "medium": false,
+            //         "hard": false
+            //     },
+            //     "tags": {
+            //         "freedom": false,
+            //         "group mind": false,
+            //         "pov": false,
+            //         "memory": false,
+            //         "listening": false,
+            //         "object work": false,
+            //         "game": false,
+            //         "status": false,
+            //         "justification": false
+            //     }
+            // }
+            // document.querySelectorAll(".filterBox").forEach(x => x.checked = false)
         }
         loadContent()
     })
@@ -351,8 +351,25 @@
         sizeIntersection = sizeFilters.filter(v => ex.size.includes(v))
         tagsIntersection = tagsFilters.filter(v => ex.tags.includes(v))
         levelIntersection = levelFilters.filter(v => ex.level.includes(v))
+        sizeEvery = sizeFilters.every(v => ex.size.includes(v))
+        tagsEvery = tagsFilters.every(v => ex.tags.includes(v))
+        levelEvery = levelFilters.every(v => ex.level.includes(v)) //
+        // sizeEvery = ex.size.some(v => sizeFilters.includes(v))
+        // tagsEvery = ex.tags.some(v => tagsFilters.includes(v))
+        // levelEvery = ex.level.some(v => levelFilters.includes(v))
         if (orAnd) {
-            return sizeIntersection.length > 0 && tagsIntersection.length > 0 && levelIntersection.length > 0
+            // return sizeEvery.length  && tagsEvery  && levelEvery
+            // let hasTags = ex.tags.some(x => tagsFilters.includes(x))
+            // let hasSize = ex.size.some(x => sizeFilters.includes(x))
+            // let hasLevel = ex.level.some(x => levelFilters.includes(x))
+            let hasTags = tagsFilters.every(x => ex.tags.includes(x))
+            let hasSize = sizeFilters.some(x => ex.size.includes(x))
+            let hasLevel = levelFilters.some(x => ex.level.includes(x))
+            if(tagsFilters.length < 1)hasTags = true
+            if(sizeFilters.length < 1)hasSize = true
+            if(levelFilters.length < 1)hasLevel = true
+            return hasTags && hasSize && hasLevel
+            // console.dir({ex},{hasSize})
         } else {
             return sizeIntersection.length > 0 || tagsIntersection.length > 0 || levelIntersection.length > 0
         }
