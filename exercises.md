@@ -141,7 +141,6 @@ responds with "Well fortunately..." and presents a way to overcome the obstacles
 <li>three line scenes</li>
 <li>you seem</li>
 <li>did you hear bout</li>
-<li>shitty gifts</li>
 
 <li>beat the hell outta the game</li>
 <li>thats me / bad guy</li>
@@ -150,30 +149,19 @@ responds with "Well fortunately..." and presents a way to overcome the obstacles
 
 
 <li>change the location / who mid scene</li>
-<li>making offers and offering the baton </li>
 <p>one improviser has an object. whenever they are making an offer they physically offer the object</p>
 <li>say a line, then say what it adds to the scene</li>
-<li>attract dont argue</li>
 <li>find a way to lose</li>
 <li>start every line with I, you, or we</li>
 <li>premeditate a big choice and use it to navigate</li>
 <li>stop talking and then wait for the other person to talk</li>
 <li>numbers, letters, categories tagouts</li>
 
-<h2>memory / listening</h2>
 <li>emotional noise</li>
 
 
-<h2>Justification</h2>
 
-<h2>game</h2>
-<ul>
-<li>what did you just say?
-</li>
 <li>super villain</li>
 <p>A:Accusation, B:Accept as super villain, A:sympathetic response </p>
 <li>own it</li>
 <p>same as above but you accept and justify as a normal person</p>
-<li>you wanted to see me [[occupation]]</li>
-<p>a: you wanted to see me [[occupation]], b: yes, 3 normal requests and a crazy 1</p>
-</ul>
