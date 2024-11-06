@@ -11,132 +11,97 @@
 
 <body style="display: flex; flex-direction: column;">
     <div class="center-contain">
-        <div id="exercises">
-
-            <h1>Exercises</h1>
-
-            <h2>basic</h2>
-            <ul>
-                <li>not just yes, hell yes</li>
-                <li><span class="title">"Did ya ever"</span>
-                    <p class="instruction">One word at a time story. Starts with on player saying "did ya ever" then
-                        each player after building a story one word at a time until a natural conclusion. Do with
-                        Hillbilly accent, etc</p>
-                </li>
-            </ul>
-
-            <h2>out of your head</h2>
-            <ul>
-                <li>hey fred shnieder</li>
-                <li>beastie rap</li>
-                <li>bunny bunny</li>
-                <li>crazy eights</li>
-                <li>good blood, bad blood</li>
-            </ul>
-
-            <h2>group mind</h2>
-            <ul>
-                <li>zip zap zop</li>
-                <li>pass the clap</li>
-                <li>point, yes, move</li>
-                <li>follow the follower</li>
-                <li>yes lets</li>
-                <li>blind counting</li>
-            </ul>
-
-            <h2>POV</h2>
-            <ul>
-                <li>I think, feel, have, want, am</li>
-                <li>work, home, play</li>
-            </ul>
-
-            <h2>memory / listening</h2>
-            <ul>
-                <li>red ball, blue ball</li>
-                <li>sequence of sequences</li>
-                <li>describe shared object</li>
-                <li>ninja star, tomahawk, big wet fish</li>
-                <li>5 things</li>
-                <li>story stealing</li>
-            </ul>
-
-            <h2>object work</h2>
-            <ul>
-                <li>pass the magic clay</li>
-            </ul>
-
-            <h2>mini improv scene</h2>
-            <ul>
-                <li>circle of what, where, who</li>
-                <li>what did you just say</li>
-                <li>three line scenes</li>
-                <li>woosh bang pow</li>
-                <li>you seem</li>
-                <li>did you hear bout</li>
-                <li>shitty gifts</li>
-            </ul>
-
-            <h2>game</h2>
-            <ul>
-                <li>beat the hell outta the game</li>
-                <li>thats me / bad guy</li>
-                <li>pattern game</li>
-            </ul>
-
-
-            <h1>Scene Drills</h1>
-
-            <h2>Basics</h2>
-            <ul>
-                <li>change the location / who mid scene</li>
-                <li>making offers and offering the baton </li>
-                <p>one improviser has an object. whenever they are making an offer they physically offer the object</p>
-                <li>say a line, then say what it adds to the scene</li>
-                <li>attract dont argue</li>
-                <li>find a way to lose</li>
-                <li>start every line with I, you, or we</li>
-                <li>premeditate a big choice and use it to navigate</li>
-                <li>stop talking and then wait for the other person to talk</li>
-
-            </ul>
-
-            <h2>out of your head</h2>
-
-            <h2>group mind</h2>
-            <ul>
-                <li>numbers, letters, categories tagouts</li>
-            </ul>
-
-            <h2>memory / listening</h2>
-            <ul>
-                <li>emotional noise</li>
-            </ul>
-
-            <h2>object work</h2>
-
-            <h2>game</h2>
-            <ul>
-                <li>what did you just say?
-                </li>
-                <li>super villain</li>
-                <p>A:Accusation, B:Accept as super villain, A:sympathetic response </p>
-                <li>own it</li>
-                <p>same as above but you accept and justify as a normal person</p>
-                <li>you wanted to see me [[occupation]]</li>
-                <p>a: you wanted to see me [[occupation]], b: yes, 3 normal requests and a crazy 1</p>
-            </ul>
-
+        <div style="margin-bottom: 2em;">
+            <span>OR</span>
+            <label class="switch">
+                <input type="checkbox" id="orAnd">
+                <span class="slider round"></span>
+            </label>
+            <span>AND</span>
         </div>
+        <div id="filters" style="display: flex; flex-direction: row;">
+            <div id="size" style="text-align: right;margin-right:1em;"></div>
+            <div id="difficulty" style="text-align: right;margin-right:1em;"></div>
+            <div id="tags" style="text-align: right;"></div>
+        </div>
+        <ul id="exercises">
+
+        </ul>
     </div>
 </body>
 
 <style>
-    .instruction{
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .instruction {
         display: none;
     }
-    .title{
+
+    .title {
         color: #2196F3;
     }
+
     .center-contain {
         display: flex;
         flex-direction: column;
@@ -218,24 +183,253 @@
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
-        let titles = document.querySelectorAll(".title")
-        for (const title of titles) {
-            let parent = title.parentElement
-            let sibling = parent.querySelector("p")
-            let siblingState = function(){
-                return getComputedStyle(sibling).getPropertyValue("display")
-            }
-            title.addEventListener("click", function(){
-                if(siblingState() == "none"){
-                    sibling.style.display="flex"
-                }else{
-                    sibling.style.display="none"
-                }
-            })
+    let filters = {
+        "sizes": {
+            "duo": false,
+            "circle": false,
+            "small": false,
+            "big": false
+        },
+        "levels": {
+            "easy": false,
+            "medium": false,
+            "hard": false
+        },
+        "tags": {
+            "freedom": false,
+            "group mind": false,
+            "pov": false,
+            "memory": false,
+            "listening": false,
+            "object work": false,
+            "game": false,
+            "status": false,
+            "justification": false
         }
+    }
+
+    let orAnd = false
+    let orAndSwitch = document.querySelector("#orAnd")
+    orAndSwitch.addEventListener("change", function () {
+        if (this.checked) {
+            orAnd = true
+            filters = {
+                "sizes": {
+                    "duo": true,
+                    "circle": true,
+                    "small": true,
+                    "big": true
+                },
+                "levels": {
+                    "easy": true,
+                    "medium": true,
+                    "hard": true
+                },
+                "tags": {
+                    "freedom": true,
+                    "group mind": true,
+                    "pov": true,
+                    "memory": true,
+                    "listening": true,
+                    "object work": true,
+                    "game": true,
+                    "status": true,
+                    "justification": true
+                }
+            }
+            document.querySelectorAll(".filterBox").forEach(x => x.checked = true)
+        } else {
+            orAnd = false
+            filters = {
+                "sizes": {
+                    "duo": false,
+                    "circle": false,
+                    "small": false,
+                    "big": false
+                },
+                "levels": {
+                    "easy": false,
+                    "medium": false,
+                    "hard": false
+                },
+                "tags": {
+                    "freedom": false,
+                    "group mind": false,
+                    "pov": false,
+                    "memory": false,
+                    "listening": false,
+                    "object work": false,
+                    "game": false,
+                    "status": false,
+                    "justification": false
+                }
+            }
+            document.querySelectorAll(".filterBox").forEach(x => x.checked = false)
+        }
+        loadContent()
     })
-    
+
+    let shell = document.querySelector("#exercises")
+
+
+
+    function bindFilters(ob, name, target) {
+        for (const key of Object.entries(ob)) {
+            let container = document.createElement("div")
+            let checkBox = document.createElement("input")
+            let label = document.createElement("label")
+            checkBox.type = "checkbox"
+            checkBox.className = "filterBox"
+            checkBox.checked = false
+            checkBox.id = key[0]
+            checkBox.name = key[0]
+            checkBox.value = key[0]
+            label.for = key[0]
+            label.innerText = key[0]
+            checkBox.addEventListener("change", function () {
+                if (this.checked) {
+                    filters[name][key[0]] = true
+                } else {
+                    filters[name][key[0]] = false
+                }
+                loadContent()
+            })
+            container.appendChild(label)
+            container.appendChild(checkBox)
+            target.appendChild(container)
+        }
+    }
+
+    function buildCheckBoxes() {
+        let sizeShell = document.querySelector('#size')
+        let tagsShell = document.querySelector('#tags')
+        let difficultyShell = document.querySelector('#difficulty')
+        bindFilters(filters.sizes, "sizes", sizeShell)
+        bindFilters(filters.tags, "tags", tagsShell)
+        bindFilters(filters.levels, "levels", difficultyShell)
+    }
+
+    function buildNode(ex) {
+        let liNode = document.createElement("li")
+        let spanNode = document.createElement("span")
+        spanNode.className = "title"
+        spanNode.innerText = ex.title
+        let pNode = document.createElement("p")
+        pNode.className = "instruction"
+        pNode.innerText = ex.text
+        let siblingState = function () {
+            return getComputedStyle(pNode).getPropertyValue("display")
+        }
+        spanNode.addEventListener("click", function () {
+            if (siblingState() == "none") {
+                pNode.style.display = "flex"
+            } else {
+                pNode.style.display = "none"
+            }
+        })
+        liNode.appendChild(spanNode)
+        liNode.appendChild(pNode)
+        shell.appendChild(liNode)
+    }
+
+
+    function loadContent() {
+        shell.innerHTML = ""
+        for (const ex of exercises) {
+            // console.log(ex.title, scanFilters(ex))
+            if (scanFilters(ex)) {
+                buildNode(ex)
+            }
+        }
+    }
+
+    function scanFilters(ex) {
+        let sizeFilters = Object.keys(filters.sizes).filter(v => filters.sizes[v] === true)
+        let tagsFilters = Object.keys(filters.tags).filter(v => filters.tags[v] === true)
+        let levelFilters = Object.keys(filters.levels).filter(v => filters.levels[v] === true)
+        sizeIntersection = sizeFilters.filter(v => ex.size.includes(v))
+        tagsIntersection = tagsFilters.filter(v => ex.tags.includes(v))
+        levelIntersection = levelFilters.filter(v => ex.level.includes(v))
+        if (orAnd) {
+            return sizeIntersection.length > 0 && tagsIntersection.length > 0 && levelIntersection.length > 0
+        } else {
+            return sizeIntersection.length > 0 || tagsIntersection.length > 0 || levelIntersection.length > 0
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        orAnd = false
+        orAndSwitch.checked = false
+        buildCheckBoxes()
+        loadContent()
+    })
+
+    let exercises = [
+
+        {
+            "title": "Clover",
+            "text": "start with one word, word association until we arrive back at original word",
+            "size": ["circle", "small", "big"],
+            "tags": ["group mind"],
+            "level": ["easy"]
+        },
+        {
+            "title": "Fingy",
+            "text": "index fingers join in middle. Say Fingy. One person initiates silly movement from finger, rest follow, finger eventually lands back I'm center, say Fingy to finish",
+            "size": ["circle", "small", "big"],
+            "tags": ["freedom", "group mind"],
+            "level": ["easy"]
+        },
+        {
+            "title": "Fortunately/Unfortunately",
+            "text": "players tell story one person at a time, each subsequent player must begin their part of the story with 'fortunately/unfortunately'",
+            "size": ["circle", "small", "big"],
+            "tags": ["justification", "group mind"],
+            "level": ["easy", "medium", "hard"]
+        },
+        {
+            "title": "It's Tuesday",
+            "text": "One actor says something rather mundane. The other actor completely overreacts in a positive manner then must justify their reaction.",
+            "size": ["duo"],
+            "tags": ["justification", "listening"],
+            "level": ["medium"]
+        },
+        {
+            "title": "Loser Ball",
+            "text": "Players in circle. One by one they pass a ball and whoever is supposed to catch it ends up not catching it. Everyone cheers them for not catching it! Ball is a different size and weight each time.",
+            "size": ["circle", "small", "big"],
+            "tags": ["object work"],
+            "level": ["easy"]
+        },
+        {
+            "title": "Yes, Let's!",
+            "text": "Circled up, each player suggests an activity and everyone enthusiastically agrees 'Yes, Let's!' and everyone acts it out.",
+            "size": ["circle", "small", "big"],
+            "tags": ["freedom"],
+            "level": ["easy",]
+        },
+        {
+            "title": "Anyone Like Me?",
+            "text": "Circle up. One by one go around I'm looking for people who, like me, love ice cream Anyone who agrees claps, gives praise, etc.",
+            "size": ["circle", "small", "big"],
+            "tags": ["group mind"],
+            "level": ["easy"]
+        },
+        {
+            "title": "Terrible Presents",
+            "text": "One by one players present a terrible present to their neighbor. Neighbor gleefully accepts the present and explains how they'll utilize it.",
+            "size": ["circle", "small", "big"],
+            "tags": ["group mind", "justification"],
+            "level": ["medium"]
+        },
+        {
+            "title": "Don't Get Me Started",
+            "text": "go around circle. Actor gives another actor a single word prompt. Actor then goes on improvised rant about object. 'Cakes? Don't get me started on Cakes!",
+            "size": ["circle", "small", "big"],
+            "tags": ["pov", "justification"],
+            "level": ["easy"]
+        },
+    ]
 </script>
 
 </html>
