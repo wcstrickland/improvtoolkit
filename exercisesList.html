@@ -191,9 +191,9 @@
             "big": false
         },
         "levels": {
-            "easy": false,
-            "medium": false,
-            "hard": false
+            "beginner": false,
+            "intermediate": false,
+            "advanced": false
         },
         "tags": {
             "freedom": false,
@@ -213,58 +213,8 @@
     orAndSwitch.addEventListener("change", function () {
         if (this.checked) {
             orAnd = true
-            // filters = {
-            //     "sizes": {
-            //         "duo": true,
-            //         "circle": true,
-            //         "small": true,
-            //         "big": true
-            //     },
-            //     "levels": {
-            //         "easy": true,
-            //         "medium": true,
-            //         "hard": true
-            //     },
-            //     "tags": {
-            //         "freedom": true,
-            //         "group mind": true,
-            //         "pov": true,
-            //         "memory": true,
-            //         "listening": true,
-            //         "object work": true,
-            //         "game": true,
-            //         "status": true,
-            //         "justification": true
-            //     }
-            // }
-            // document.querySelectorAll(".filterBox").forEach(x => x.checked = true)
         } else {
             orAnd = false
-            // filters = {
-            //     "sizes": {
-            //         "duo": false,
-            //         "circle": false,
-            //         "small": false,
-            //         "big": false
-            //     },
-            //     "levels": {
-            //         "easy": false,
-            //         "medium": false,
-            //         "hard": false
-            //     },
-            //     "tags": {
-            //         "freedom": false,
-            //         "group mind": false,
-            //         "pov": false,
-            //         "memory": false,
-            //         "listening": false,
-            //         "object work": false,
-            //         "game": false,
-            //         "status": false,
-            //         "justification": false
-            //     }
-            // }
-            // document.querySelectorAll(".filterBox").forEach(x => x.checked = false)
         }
         loadContent()
     })
@@ -391,7 +341,7 @@
             "tags": ["freedom", "memory", "pov", "group mind",
                 "justification", "status", "game", "object work",
                 "listening"],
-            "level": ["easy", "medium", "hard"]
+            "level": ["beginner", "intermediate", "advanced"]
         },
         {
             "title": "Super Villain",
@@ -400,7 +350,7 @@
             "tags": [ "pov",
                 "justification", "status", "game",
                 "listening"],
-            "level": [ "medium", "hard"]
+            "level": [ "intermediate", "advanced"]
         },
         {
             "title": "Think, Feel, Have, Want, Am",
@@ -409,7 +359,7 @@
             "tags": ["pov", 
                 "justification",  "game",
               ],
-            "level": [ "medium", "hard"]
+            "level": [ "intermediate", "advanced"]
         },
         {
             "title": "Work, Home, Play",
@@ -418,7 +368,7 @@
             "tags": ["pov",
                 "justification", "status", "game",
                 "listening"],
-            "level": [ "medium", "hard"]
+            "level": [ "intermediate", "advanced"]
         },
         {
             "title": "Play to lose",
@@ -427,7 +377,7 @@
             "tags": ["pov",
                 "justification", "status", "game",
                 "listening"],
-            "level": [ "medium", "hard"]
+            "level": [ "intermediate", "advanced"]
         },
         {
             "title": "You Seem",
@@ -436,7 +386,7 @@
             "tags": [ "memory", "pov",
                 "justification", "status", "game",
                 "listening"],
-            "level": [ "medium", "hard"]
+            "level": [ "intermediate", "advanced"]
         },
         {
             "title": "Mind Meld",
@@ -444,7 +394,7 @@
             "size": ["duo", "circle", "small", "big"],
             "tags": [ "group mind",
                ],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Story Stealing",
@@ -453,7 +403,7 @@
             "tags": ["memory", "pov", "group mind",
                 
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "I, You, We",
@@ -462,7 +412,7 @@
             "tags": [ "pov", "group mind",
                 "justification", "status",
                 "listening"],
-            "level": [ "medium", "hard"]
+            "level": [ "intermediate", "advanced"]
         },
         {
             "title": "ABC, 123, tags and edits",
@@ -471,7 +421,7 @@
             "tags": [ "memory","group mind",
                 "game", 
                 "listening"],
-            "level": [ "medium", "hard"]
+            "level": [ "intermediate", "advanced"]
         },
         {
             "title": "Blind Counting",
@@ -479,7 +429,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["group mind",
                 "listening"],
-            "level": ["easy", "medium", "hard"]
+            "level": ["beginner", "intermediate", "advanced"]
         },
         {
             "title": "Follow The Follower",
@@ -487,7 +437,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["group mind",
             ],
-            "level": ["easy",]
+            "level": ["beginner",]
         },
         {
             "title": "HELL YES",
@@ -496,7 +446,7 @@
             "tags": ["freedom", "pov", "group mind",
 
                 "listening"],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Shared Description",
@@ -505,7 +455,7 @@
             "tags": ["freedom", "memory", "group mind",
                 "object work",
                 "listening"],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Beat the Hell outta the game",
@@ -514,7 +464,7 @@
             "tags": ["memory", "pov",
                 "justification", "status", "game",
                 "listening"],
-            "level": ["hard"]
+            "level": ["advanced"]
         },
         {
             "title": "Did you hear about so and so?",
@@ -523,7 +473,7 @@
             "tags": ["memory", "pov", "group mind",
                 "justification", "status",
                 "listening"],
-            "level": ["medium"]
+            "level": ["intermediate"]
         },
         {
             "title": "Building The World",
@@ -532,7 +482,7 @@
             "tags": ["freedom", "memory", "pov", "group mind",
                 "justification", "status", "game",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Pattern Game",
@@ -541,7 +491,7 @@
             "tags": ["freedom", "memory", "pov", "group mind",
                 "justification", "status", "game",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Salesperson of the Year",
@@ -550,7 +500,7 @@
             "tags": ["memory", "pov",
                 "justification", "status", "game", "object work",
             ],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Remember That Time",
@@ -559,7 +509,7 @@
             "tags": ["pov", "group mind",
                 "justification",
                 "listening"],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Emotional Noise",
@@ -568,7 +518,7 @@
             "tags": ["pov",
                 "justification",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Whats the deal with Neal",
@@ -576,7 +526,7 @@
             "size": ["circle", "small"],
             "tags": ["pov",
                 "justification", "status", "game"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Dumb Dumb Convention",
@@ -585,7 +535,7 @@
             "tags": ["pov",
                 "justification", "status", "game",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Don't get me started",
@@ -594,7 +544,7 @@
             "tags": ["pov",
                 "justification", "status", "game", "object work",
             ],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Family Portrait",
@@ -603,7 +553,7 @@
             "tags": ["pov", "group mind",
                 "status", "game",
             ],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Word Train",
@@ -611,7 +561,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["memory",
                 "listening"],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Problem/Solution",
@@ -620,7 +570,7 @@
             "tags": [
                 "justification", "object work",
             ],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Sequence of Sequences",
@@ -629,7 +579,7 @@
             "tags": ["freedom", "memory", "group mind",
 
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Point, Yes, Move",
@@ -637,7 +587,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["group mind",
             ],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Pass the Face",
@@ -646,7 +596,7 @@
             "tags": ["freedom", "pov", "group mind",
                 "status",
             ],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "What's In the Kitchen?",
@@ -654,7 +604,7 @@
             "size": ["small", "big"],
             "tags": ["memory", "object work",
             ],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Hitchhiker",
@@ -663,7 +613,7 @@
             "tags": ["freedom", "pov", "group mind",
                 "justification", "game", "object work",
                 "listening"],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Did Ya Ever",
@@ -672,7 +622,7 @@
             "tags": ["memory", "pov", "group mind",
                 "justification",
                 "listening"],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Distillation",
@@ -680,70 +630,70 @@
             "size": ["duo",],
             "tags": ["memory", "pov", "game",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Clover",
             "text": "start with one word, word association until we arrive back at original word",
             "size": ["circle", "small", "big"],
             "tags": ["group mind"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Fingy",
             "text": "index fingers join in middle. Say Fingy. One person initiates silly movement from finger, rest follow, finger eventually lands back I'm center, say Fingy to finish",
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "group mind"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Fortunately/Unfortunately",
             "text": "players tell story one person at a time, each subsequent player must begin their part of the story with 'fortunately/unfortunately'",
             "size": ["circle", "small", "big"],
             "tags": ["justification", "group mind"],
-            "level": ["easy", "medium", "hard"]
+            "level": ["beginner", "intermediate", "advanced"]
         },
         {
             "title": "It's Tuesday",
             "text": "One actor says something rather mundane. The other actor completely overreacts in a positive manner then must justify their reaction.",
             "size": ["duo"],
             "tags": ["justification", "listening"],
-            "level": ["medium"]
+            "level": ["intermediate"]
         },
         {
             "title": "Loser Ball",
             "text": "Players in circle. One by one they pass a ball and whoever is supposed to catch it ends up not catching it. Everyone cheers them for not catching it! Ball is a different size and weight each time.",
             "size": ["circle", "small", "big"],
             "tags": ["object work"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Yes, Let's!",
             "text": "Circled up, each player suggests an activity and everyone enthusiastically agrees 'Yes, Let's!' and everyone acts it out.",
             "size": ["circle", "small", "big"],
             "tags": ["freedom"],
-            "level": ["easy",]
+            "level": ["beginner",]
         },
         {
             "title": "Anyone Like Me?",
             "text": "Circle up. One by one go around I'm looking for people who, like me, love ice cream Anyone who agrees claps, gives praise, etc.",
             "size": ["circle", "small", "big"],
             "tags": ["group mind"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Terrible Presents",
             "text": "One by one players present a terrible present to their neighbor. Neighbor gleefully accepts the present and explains how they'll utilize it.",
             "size": ["circle", "small", "big"],
             "tags": ["group mind", "justification"],
-            "level": ["medium"]
+            "level": ["intermediate"]
         },
         {
             "title": "Don't Get Me Started",
             "text": "go around circle. Actor gives another actor a single word prompt. Actor then goes on improvised rant about object. 'Cakes? Don't get me started on Cakes!",
             "size": ["circle", "small", "big"],
             "tags": ["pov", "justification"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Baton Offer",
@@ -752,7 +702,7 @@
             "tags": ["memory", "pov", "group mind",
                 "justification", "status", "game", "object work",
                 "listening"],
-            "level": ["hard"]
+            "level": ["advanced"]
         },
         {
             "title": "Attract dont Argue",
@@ -761,7 +711,7 @@
             "tags": ["pov", "group mind",
                 "justification", "status", "game",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "You wanted to see me, [occupation]?",
@@ -769,7 +719,7 @@
             "size": ["duo"],
             "tags": ["pov", "justification", "status", "game",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "What did you just say?",
@@ -778,7 +728,7 @@
             "tags": ["freedom", "pov",
                 "justification", "status", "game",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Terrible Gifts",
@@ -787,7 +737,7 @@
             "tags": ["freedom", "pov",
                 "justification", "object work",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Magic Clay",
@@ -796,7 +746,7 @@
             "tags": [
                 "justification", "object work",
             ],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "hey fred schnieder",
@@ -804,7 +754,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "group mind",
             ],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Beastie Rap",
@@ -812,7 +762,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "memory", "group mind",
                 "listening"],
-            "level": ["easy", "medium"]
+            "level": ["beginner", "intermediate"]
         },
         {
             "title": "Bunny Bunny",
@@ -820,7 +770,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "group mind",
                 "listening"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Crazy 8s",
@@ -828,7 +778,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "group mind",
                 "listening"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Zip, Zap, Zop",
@@ -836,7 +786,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "group mind",
                 "listening"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Woosh Bang Pow",
@@ -844,7 +794,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "memory", "pov", "group mind",
                 "listening"],
-            "level": ["easy", "medium", "hard"]
+            "level": ["beginner", "intermediate", "advanced"]
         },
         {
             "title": "Pass the Clap",
@@ -852,7 +802,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "group mind",
                 "listening"],
-            "level": ["easy"]
+            "level": ["beginner"]
         },
         {
             "title": "Red ball, Blue Ball",
@@ -861,7 +811,7 @@
             "tags": ["memory", "group mind",
                 "object work",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "Ninja Star, Tomahawk, Big Wet Fish",
@@ -870,7 +820,7 @@
             "tags": ["memory", "group mind",
                 "object work",
                 "listening"],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
         {
             "title": "5 Things",
@@ -878,7 +828,7 @@
             "size": ["circle", "small", "big"],
             "tags": ["freedom", "memory", "group mind",
             ],
-            "level": ["medium", "hard"]
+            "level": ["intermediate", "advanced"]
         },
     ]
 </script>
