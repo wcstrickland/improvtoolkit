@@ -104,7 +104,6 @@ responds with 'Well fortunately...' and presents a way to overcome the obstacles
 <li>not just yes, hell yes</li>
 <li>good blood, bad blood</li>
 
-<li>point, yes, move</li>
 <li>Mind Meld</li>
 <li>follow the follower</li>
 <li>blind counting</li>
@@ -114,7 +113,6 @@ responds with 'Well fortunately...' and presents a way to overcome the obstacles
 <li>work, home, play</li>
 
 <!-- <li>red ball, blue ball</li> -->
-<li>sequence of sequences</li>
 <li>describe shared object</li>
 <!-- <li>ninja star, tomahawk, big wet fish</li> -->
 <li>story stealing</li>
