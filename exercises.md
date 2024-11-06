@@ -20,7 +20,6 @@ suggestion and player A enthusiastically responds 'Exactly!' and continues to te
 story in the new arc. This can be in pairs or in front of the class.
 • 'Monkey in the Middle' 3 actors, 2 scenes. Actor in middle starts scene with actor on
 left, scene gets a little ways in and actor on right repeats one of the lines of dialogue.
-
 Middle actor then switches to new scene responding to the same line but in a different
 context.
 • 'Pass it Along' large group of players line up with space in between them. Actor at back
@@ -101,48 +100,21 @@ to either corroborate the story or challenge it.
 2 responds 'unfortunately...' and gives them an obstacle to that goal. Player 1 then
 responds with 'Well fortunately...' and presents a way to overcome the obstacles.
 
-<li>not just yes, hell yes</li>
 <li>good blood, bad blood</li>
-
 <li>Mind Meld</li>
-<li>follow the follower</li>
-<li>blind counting</li>
-
-
 <li>I think, feel, have, want, am</li>
 <li>work, home, play</li>
-
-<!-- <li>red ball, blue ball</li> -->
-<li>describe shared object</li>
-<!-- <li>ninja star, tomahawk, big wet fish</li> -->
 <li>story stealing</li>
-
-
-<li>circle of what, where, who</li>
-<li>what did you just say</li>
 <li>three line scenes</li>
 <li>you seem</li>
-<li>did you hear bout</li>
-
-<li>beat the hell outta the game</li>
 <li>thats me / bad guy</li>
-<li>pattern game</li>
-
-
-
 <li>change the location / who mid scene</li>
-<p>one improviser has an object. whenever they are making an offer they physically offer the object</p>
 <li>say a line, then say what it adds to the scene</li>
 <li>find a way to lose</li>
 <li>start every line with I, you, or we</li>
 <li>premeditate a big choice and use it to navigate</li>
 <li>stop talking and then wait for the other person to talk</li>
 <li>numbers, letters, categories tagouts</li>
-
-<li>emotional noise</li>
-
-
-
 <li>super villain</li>
 <p>A:Accusation, B:Accept as super villain, A:sympathetic response </p>
 <li>own it</li>
