@@ -103,6 +103,5 @@ responds with 'Well fortunately...' and presents a way to overcome the obstacles
 <li>good blood, bad blood</li>
 <li>three line scenes</li>
 <li>change the location / who mid scene</li>
-<li>say a line, then say what it adds to the scene</li>
 <li>premeditate a big choice and use it to navigate</li>
 <li>stop talking and then wait for the other person to talk</li>
