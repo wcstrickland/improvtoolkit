@@ -381,7 +381,7 @@ let exercises = [
     },
     {
         "title": "Baton Offer",
-        "text": "2 person scene. Each actor has a baton. When you feel like you have made an offer you hand the other the baton. If you have both batons you need to be making offers. Variation: each player says their line and then breaks character to say 'what' they are offering to the scene ",
+        "text": "Exercise: Baton Offering 2 person scene. Each actor has a baton or some object. When you feel like you have made an offer you hand the other the baton. If you have both batons you need to be making offers. Variation: each player says their line and then breaks character to say 'what' they are offering to the scene. Example: A: Hey James mom said she wont be home until 10. Break Character: I am offering the Who and the Where.  B: You know what that means, we can read ALL WE WANT!. Break Character: I am offering an unusual behavior and peas in a pod.",
         "size": ["duo"],
         "tags": ["memory", "pov", "group mind",
             "justification", "status", "game", "object work",
