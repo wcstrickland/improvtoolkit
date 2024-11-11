@@ -5,7 +5,25 @@ let exercises = [
         "text": "",
         "size": ["duo", "circle", "small", "big"],
         "tags": ["freedom", "memory", "pov", "group mind",
-            "justification", "status", "game", "object work",
+            "justification", "status", "game", "object work", "premise",
+            "listening"],
+        "level": ["beginner", "intermediate", "advanced"]
+    },
+    {
+        "title": "Armando Stations",
+        "text": "3 chairs. 1st chair does 1ish minute monologue from suggestion. 2nd chair says what funny ideas stuck out and refines them to a 'game' or 'sketch title'. 3rd chair delivers a clear premise based initiation line.",
+        "size": ["small"],
+        "tags": [ "memory",
+             "game", "premise",
+            "listening"],
+        "level": [ "advanced"]
+    },
+    {
+        "title": "And that Means",
+        "text": "2 actors. The scene is 1 line per actor. Each repeats the last line and then says 'And that means' before contextualizing the previous line. Variations include every line starting with 'We', or prohibiting hypothetical language like will, could, or can.",
+        "size": ["duo" ],
+        "tags": [ "memory", "pov",
+            "justification", "status", "game",
             "listening"],
         "level": ["beginner", "intermediate", "advanced"]
     },
