@@ -10,6 +10,15 @@ let exercises = [
         "level": ["beginner", "intermediate", "advanced"]
     },
     {
+        "title": "Always, Never, Sometimes",
+        "text": "I / We [pilots] ALWAYS do our pre flight checklist, we NEVER cut corners, we SOMETIMES do some barrel rolls",
+        "size": ["duo", "circle", "small", "big"],
+        "tags": ["freedom", "pov", "group mind",
+            "justification",  "game", 
+            "listening"],
+        "level": [ "intermediate", "advanced"]
+    },
+    {
         "title": "Armando Stations",
         "text": "3 chairs. 1st chair does 1ish minute monologue from suggestion. 2nd chair says what funny ideas stuck out and refines them to a 'game' or 'sketch title'. 3rd chair delivers a clear premise based initiation line.",
         "size": ["small"],
