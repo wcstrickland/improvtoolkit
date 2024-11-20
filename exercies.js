@@ -10,6 +10,15 @@ let exercises = [
         "level": ["beginner", "intermediate", "advanced"]
     },
     {
+        "title": "I know you, I've always known you",
+        "text": "In a circle each person says 'I know you' or 'Ive always known you' or 'I know you , Mom [[or other relationship label]]'",
+        "size": ["duo", "circle", "small", "big"],
+        "tags": ["freedom", 
+            "justification", 
+            "listening"],
+        "level": ["beginner"]
+    },
+    {
         "title": "Always, Never, Sometimes",
         "text": "I / We [pilots] ALWAYS do our pre flight checklist, we NEVER cut corners, we SOMETIMES do some barrel rolls",
         "size": ["duo", "circle", "small", "big"],
