@@ -10,6 +10,15 @@ let exercises = [
         "level": ["beginner", "intermediate", "advanced"]
     },
     {
+        "title": "I dont usually do this but...",
+        "text": "A: I am {X} I believe {y}  B: Hey I know you believe {y} but I/we need you to do this {opposite of y thing}  A: I dont usually do this but {justification in spite of character}",
+        "size": ["duo", "circle", "small", "big"],
+        "tags": ["freedom",  "pov", 
+            "justification",  "game",  "premise",
+            "listening"],
+        "level": ["beginner", "intermediate", "advanced"]
+    },
+    {
         "title": "I know you, I've always known you",
         "text": "In a circle each person says 'I know you' or 'Ive always known you' or 'I know you , Mom [[or other relationship label]]'",
         "size": ["duo", "circle", "small", "big"],
