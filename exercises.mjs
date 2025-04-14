@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs'
 let exercises = [
     // template
     {
@@ -564,5 +564,5 @@ let exercises = [
 
 fs.writeFileSync('exercises.csv', 'title,size,tags,levels,text', 'utf-8')
 for (const ex of exercises) {
-    fs.appendFileSync('exercises.csv', `\n${ex.title},${''},${ex.tags.join(' ')},${' '},${ex.text}`, 'utf-8')
+    fs.appendFileSync('exercises.csv', `\n${ex.title.replaceAll(',', ' ')},${''},${ex.tags.join(' ')},${' '},${ex.text.replaceAll(',', ' ')}`, 'utf-8')
 }
