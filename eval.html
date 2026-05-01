@@ -110,6 +110,13 @@
 
   .ctrl-btn.reset:hover { border-color: #888; color: #ccc; }
 
+  .ctrl-btn.history-btn {
+    border-color: #6a5acd;
+    color: #a090f0;
+    background: rgba(106, 90, 205, 0.07);
+  }
+  .ctrl-btn.history-btn:hover { background: rgba(106, 90, 205, 0.16); border-color: #a090f0; }
+
   .ctrl-btn.json-btn {
     margin-left: auto;
     border-color: var(--accent-dim);
@@ -328,6 +335,7 @@
       <button class="ctrl-btn start" onclick="startTimer()">▶ Start</button>
       <button class="ctrl-btn stop" onclick="stopTimer()">■ Stop</button>
       <button class="ctrl-btn reset" onclick="resetAll()">↺ Reset</button>
+      <button class="ctrl-btn history-btn" onclick="openHistory()">⊞ View History</button>
       <button class="ctrl-btn json-btn" onclick="toggleJSON()">{ } Export JSON</button>
     </div>
   </div>
@@ -443,10 +451,96 @@
     });
   }
 
+  const STORAGE_KEY = "scene_tracker_history";
+
+  function saveToHistory(payload) {
+    let history = [];
+    try { history = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch(e) {}
+    payload._savedAt = new Date().toISOString();
+    history.push(payload);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  }
+
+  function openHistory() {
+    let history = [];
+    try { history = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch(e) {}
+    const json = JSON.stringify(history, null, 2);
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session History</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0e0e0e; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace; padding: 28px 24px 48px; min-height: 100vh; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #2a2a2a; flex-wrap: wrap; gap: 12px; }
+  h1 { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #a090f0; }
+  .count { font-size: 11px; color: #444; }
+  .btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 3px; cursor: pointer; transition: all 0.12s; }
+  .btn-copy { border: 1px solid #3a3a3a; background: #161616; color: #666; }
+  .btn-copy:hover { border-color: #555; color: #e8e8e8; }
+  .btn-copy.copied { border-color: #4ef09a; color: #4ef09a; background: rgba(78,240,154,0.06); }
+  .btn-clear { border: 1px solid #5a2020; background: rgba(255,90,90,0.06); color: #ff5a5a; }
+  .btn-clear:hover { background: rgba(255,90,90,0.14); }
+  .actions { display: flex; gap: 8px; }
+  pre { background: #161616; border: 1px solid #2a2a2a; border-radius: 3px; padding: 20px; font-size: 12px; color: #a8d060; white-space: pre-wrap; word-break: break-all; line-height: 1.7; overflow-y: auto; }
+  pre::-webkit-scrollbar { width: 6px; } pre::-webkit-scrollbar-track { background: transparent; } pre::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  .empty { color: #444; font-size: 13px; padding: 40px 0; text-align: center; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>Session History</h1>
+    <div class="count">${history.length} session${history.length !== 1 ? "s" : ""} stored</div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-copy" id="copyAll" onclick="copyAll()">⎘ Copy All</button>
+    <button class="btn btn-clear" onclick="clearAll()">✕ Clear History</button>
+  </div>
+</div>
+${history.length === 0
+  ? '<div class="empty">No sessions saved yet.</div>'
+  : `<pre id="jsonPre">${json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`}
+<script>
+  function copyAll() {
+    navigator.clipboard.writeText(${JSON.stringify(json)}).then(() => {
+      const btn = document.getElementById("copyAll");
+      btn.textContent = "✓ Copied";
+      btn.classList.add("copied");
+      setTimeout(() => { btn.textContent = "⎘ Copy All"; btn.classList.remove("copied"); }, 2000);
+    });
+  }
+  function clearAll() {
+    if (confirm("Clear all saved session history?")) {
+      localStorage.setItem("scene_tracker_history", "[]");
+      location.reload();
+    }
+  }
+<\/script>
+</body>
+</html>`;
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    window.open(url, "_blank");
+  }
+
   function toggleJSON() {
     const section = document.getElementById("jsonSection");
     jsonVisible = !jsonVisible;
     if (jsonVisible) {
+      const nameA = document.getElementById("nameA").value.trim() || "Column A";
+      const nameB = document.getElementById("nameB").value.trim() || "Column B";
+      const notes = document.getElementById("notesInput").value.trim();
+      const snapshot = {
+        timer: fmt(elapsed()),
+        [nameA]: Object.assign({}, btnData.A),
+        [nameB]: Object.assign({}, btnData.B),
+        NOTES: notes
+      };
+      saveToHistory(snapshot);
       renderJSON();
       section.classList.add("visible");
     } else {
