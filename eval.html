@@ -203,7 +203,39 @@
     color: var(--accent-dim);
   }
 
-  /* ── JSON OUTPUT ── */
+  /* ── NOTES ── */
+  .notes-wrap {
+    margin-top: 20px;
+  }
+  .notes-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .notes-textarea {
+    width: 100%;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    resize: vertical;
+    min-height: 90px;
+    outline: none;
+    line-height: 1.6;
+    transition: border-color 0.12s;
+  }
+  .notes-textarea::placeholder { color: var(--text-dim); }
+  .notes-textarea:focus { border-color: var(--accent-dim); }
+
+
   .json-section {
     margin-top: 24px;
     display: none;
@@ -309,6 +341,11 @@
       <input class="col-name-input" id="nameB" type="text" placeholder="Name" autocomplete="off" />
       <div class="col-buttons" id="colB"></div>
     </div>
+  </div>
+
+  <div class="notes-wrap">
+    <div class="notes-label">Notes</div>
+    <textarea class="notes-textarea" id="notesInput" placeholder="Add notes here..."></textarea>
   </div>
 
   <div class="json-section" id="jsonSection">
@@ -420,10 +457,12 @@
   function renderJSON() {
     const nameA = document.getElementById("nameA").value.trim() || "Column A";
     const nameB = document.getElementById("nameB").value.trim() || "Column B";
+    const notes = document.getElementById("notesInput").value.trim();
     const payload = {
       timer: fmt(elapsed()),
       [nameA]: btnData.A,
-      [nameB]: btnData.B
+      [nameB]: btnData.B,
+      NOTES: notes
     };
     document.getElementById("jsonOutput").textContent = JSON.stringify(payload, null, 2);
   }
@@ -445,6 +484,7 @@
 
   document.getElementById("nameA").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
   document.getElementById("nameB").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
+  document.getElementById("notesInput").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
 </script>
 
 </body>
