@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scene Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0e;
+    --surface: #161616;
+    --border: #2a2a2a;
+    --border-bright: #3a3a3a;
+    --text: #e8e8e8;
+    --text-muted: #666;
+    --text-dim: #444;
+    --accent: #c8f04e;
+    --accent-dim: #8aaa2a;
+    --accent-bg: rgba(200, 240, 78, 0.08);
+    --pressed-bg: rgba(200, 240, 78, 0.12);
+    --pressed-border: #c8f04e;
+    --pressed-text: #c8f04e;
+    --red: #ff5a5a;
+    --green: #4ef09a;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+  }
+
+  body {
+    min-height: 100vh;
+    padding: 28px 24px 48px;
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .timer-display {
+    font-family: var(--mono);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    min-width: 110px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .timer-display.stopped {
+    color: var(--text-muted);
+  }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .ctrl-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 3px;
+    border: 1px solid var(--border-bright);
+    background: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.12s;
+  }
+
+  .ctrl-btn:hover { border-color: #555; color: var(--text); }
+
+  .ctrl-btn.start {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(78, 240, 154, 0.06);
+  }
+  .ctrl-btn.start:hover { background: rgba(78, 240, 154, 0.14); }
+
+  .ctrl-btn.stop {
+    border-color: var(--red);
+    color: var(--red);
+    background: rgba(255, 90, 90, 0.06);
+  }
+  .ctrl-btn.stop:hover { background: rgba(255, 90, 90, 0.14); }
+
+  .ctrl-btn.reset:hover { border-color: #888; color: #ccc; }
+
+  .ctrl-btn.json-btn {
+    margin-left: auto;
+    border-color: var(--accent-dim);
+    color: var(--accent);
+    background: var(--accent-bg);
+    letter-spacing: 0.04em;
+  }
+  .ctrl-btn.json-btn:hover { background: rgba(200,240,78,0.16); border-color: var(--accent); }
+
+  /* ── COLUMNS ── */
+  .columns-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .col-name-input {
+    width: 100%;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 9px 12px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.12s;
+  }
+  .col-name-input::placeholder {
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .col-name-input:focus {
+    border-color: var(--accent-dim);
+  }
+
+  .col-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .scene-btn {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.1s, border-color 0.1s, color 0.1s;
+    text-align: left;
+  }
+
+  .scene-btn:hover {
+    border-color: var(--border-bright);
+    background: #1e1e1e;
+  }
+
+  .scene-btn.pressed {
+    background: var(--pressed-bg);
+    border-color: var(--pressed-border);
+    color: var(--pressed-text);
+  }
+
+  .btn-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .btn-ts {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.1s;
+  }
+
+  .scene-btn.pressed .btn-ts {
+    color: var(--accent-dim);
+  }
+
+  /* ── JSON OUTPUT ── */
+  .json-section {
+    margin-top: 24px;
+    display: none;
+  }
+
+  .json-section.visible {
+    display: block;
+  }
+
+  .json-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .json-header-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .copy-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 3px;
+    border: 1px solid var(--border-bright);
+    background: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .copy-btn:hover { border-color: #555; color: var(--text); }
+  .copy-btn.copied {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(78, 240, 154, 0.06);
+  }
+
+  .json-output {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 16px 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #a8d060;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 320px;
+    overflow-y: auto;
+    line-height: 1.7;
+  }
+
+  /* scrollbar */
+  .json-output::-webkit-scrollbar { width: 6px; }
+  .json-output::-webkit-scrollbar-track { background: transparent; }
+  .json-output::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+  /* ── STATUS DOT ── */
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .status-dot.running {
+    background: var(--green);
+    box-shadow: 0 0 6px rgba(78,240,154,0.6);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
+
+<div class="center-contain">
+
+  <div class="top-bar">
+    <div class="status-dot" id="statusDot"></div>
+    <span class="timer-display stopped" id="timerDisplay">0:00.0</span>
+    <div class="controls">
+      <button class="ctrl-btn start" onclick="startTimer()">▶ Start</button>
+      <button class="ctrl-btn stop" onclick="stopTimer()">■ Stop</button>
+      <button class="ctrl-btn reset" onclick="resetAll()">↺ Reset</button>
+      <button class="ctrl-btn json-btn" onclick="toggleJSON()">{ } Export JSON</button>
+    </div>
+  </div>
+
+  <div class="columns-wrap">
+    <div>
+      <input class="col-name-input" id="nameA" type="text" placeholder="Name" autocomplete="off" />
+      <div class="col-buttons" id="colA"></div>
+    </div>
+    <div>
+      <input class="col-name-input" id="nameB" type="text" placeholder="Name" autocomplete="off" />
+      <div class="col-buttons" id="colB"></div>
+    </div>
+  </div>
+
+  <div class="json-section" id="jsonSection">
+    <div class="json-header">
+      <span class="json-header-label">JSON Output</span>
+      <button class="copy-btn" id="copyBtn" onclick="copyJSON()">⎘ Copy</button>
+    </div>
+    <pre class="json-output" id="jsonOutput"></pre>
+  </div>
+
+</div>
+
+<script>
+  const LABELS = ["YES", "AND", "WHO", "WHAT", "WHERE", "LABEL", "FRAME", "HEIGHTEN", "REST", "JUSTIFY"];
+
+  let timerStart = null;
+  let timerOffset = 0;
+  let timerRunning = false;
+  let rafId = null;
+  let btnData = { A: {}, B: {} };
+  let jsonVisible = false;
+
+  function fmt(ms) {
+    const tenths = Math.floor(ms / 100) % 10;
+    const secs   = Math.floor(ms / 1000) % 60;
+    const mins   = Math.floor(ms / 60000);
+    return mins + ":" + String(secs).padStart(2, "0") + "." + tenths;
+  }
+
+  function elapsed() {
+    if (!timerRunning) return timerOffset;
+    return timerOffset + (Date.now() - timerStart);
+  }
+
+  function tick() {
+    document.getElementById("timerDisplay").textContent = fmt(elapsed());
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function startTimer() {
+    if (timerRunning) return;
+    timerStart = Date.now();
+    timerRunning = true;
+    const disp = document.getElementById("timerDisplay");
+    disp.classList.remove("stopped");
+    document.getElementById("statusDot").classList.add("running");
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function stopTimer() {
+    if (!timerRunning) return;
+    timerOffset += Date.now() - timerStart;
+    timerRunning = false;
+    cancelAnimationFrame(rafId);
+    document.getElementById("timerDisplay").classList.add("stopped");
+    document.getElementById("statusDot").classList.remove("running");
+  }
+
+  function resetAll() {
+    stopTimer();
+    timerOffset = 0;
+    document.getElementById("timerDisplay").textContent = "0:00.0";
+    document.getElementById("timerDisplay").classList.add("stopped");
+    btnData = { A: {}, B: {} };
+    document.querySelectorAll(".scene-btn").forEach(btn => {
+      btn.classList.remove("pressed");
+      btn.querySelector(".btn-ts").textContent = "";
+    });
+    if (jsonVisible) {
+      document.getElementById("jsonOutput").textContent = "";
+      document.getElementById("jsonSection").classList.remove("visible");
+      jsonVisible = false;
+    }
+  }
+
+  function pressBtn(col, label, el) {
+    const ts = fmt(elapsed());
+    btnData[col][label] = ts;
+    el.classList.add("pressed");
+    el.querySelector(".btn-ts").textContent = ts;
+    if (jsonVisible) renderJSON();
+  }
+
+  function copyJSON() {
+    const text = document.getElementById("jsonOutput").textContent;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById("copyBtn");
+      btn.textContent = "✓ Copied";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        btn.textContent = "⎘ Copy";
+        btn.classList.remove("copied");
+      }, 2000);
+    });
+  }
+
+  function toggleJSON() {
+    const section = document.getElementById("jsonSection");
+    jsonVisible = !jsonVisible;
+    if (jsonVisible) {
+      renderJSON();
+      section.classList.add("visible");
+    } else {
+      section.classList.remove("visible");
+    }
+  }
+
+  function renderJSON() {
+    const nameA = document.getElementById("nameA").value.trim() || "Column A";
+    const nameB = document.getElementById("nameB").value.trim() || "Column B";
+    const payload = {
+      timer: fmt(elapsed()),
+      [nameA]: btnData.A,
+      [nameB]: btnData.B
+    };
+    document.getElementById("jsonOutput").textContent = JSON.stringify(payload, null, 2);
+  }
+
+  function buildColumns() {
+    ["A", "B"].forEach(col => {
+      const container = document.getElementById("col" + col);
+      LABELS.forEach(label => {
+        const btn = document.createElement("button");
+        btn.className = "scene-btn";
+        btn.innerHTML = `<span class="btn-name">${label}</span><span class="btn-ts"></span>`;
+        btn.addEventListener("click", () => pressBtn(col, label, btn));
+        container.appendChild(btn);
+      });
+    });
+  }
+
+  buildColumns();
+
+  document.getElementById("nameA").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
+  document.getElementById("nameB").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
+</script>
+
+</body>
+</html>
