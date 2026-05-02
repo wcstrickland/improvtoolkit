@@ -98,16 +98,13 @@
     <div>
       <input class="col-name-input" id="nameA" type="text" placeholder="Name" autocomplete="off" />
       <div class="col-buttons" id="colA"></div>
+      <textarea class="notes-textarea" id="notesA" placeholder="Notes..." style="margin-top:8px;"></textarea>
     </div>
     <div>
       <input class="col-name-input" id="nameB" type="text" placeholder="Name" autocomplete="off" />
       <div class="col-buttons" id="colB"></div>
+      <textarea class="notes-textarea" id="notesB" placeholder="Notes..." style="margin-top:8px;"></textarea>
     </div>
-  </div>
-
-  <div class="notes-wrap">
-    <div class="notes-label">Notes</div>
-    <textarea class="notes-textarea" id="notesInput" placeholder="Add notes here..."></textarea>
   </div>
 
   <div class="json-section" id="jsonSection">
@@ -167,7 +164,8 @@
     btnData = { A: {}, B: {} };
     document.getElementById("nameA").value = "";
     document.getElementById("nameB").value = "";
-    document.getElementById("notesInput").value = "";
+    document.getElementById("notesA").value = "";
+    document.getElementById("notesB").value = "";
     document.querySelectorAll(".scene-btn").forEach(function(btn) {
       btn.classList.remove("pressed");
       btn.querySelector(".btn-ts").textContent = "";
@@ -208,20 +206,30 @@
   function buildSnapshot() {
     var nameA = document.getElementById("nameA").value.trim() || "Column A";
     var nameB = document.getElementById("nameB").value.trim() || "Column B";
-    var notes = document.getElementById("notesInput").value.trim();
-    var snap = { _savedAt: new Date().toISOString(), timer: fmt(elapsed()), NOTES: notes };
-    snap[nameA] = JSON.parse(JSON.stringify(btnData.A));
-    snap[nameB] = JSON.parse(JSON.stringify(btnData.B));
+    var notesA = document.getElementById("notesA").value.trim();
+    var notesB = document.getElementById("notesB").value.trim();
+    var snap = { _savedAt: new Date().toISOString(), timer: fmt(elapsed()) };
+    var colA = JSON.parse(JSON.stringify(btnData.A));
+    colA.NOTES = notesA;
+    var colB = JSON.parse(JSON.stringify(btnData.B));
+    colB.NOTES = notesB;
+    snap[nameA] = colA;
+    snap[nameB] = colB;
     return snap;
   }
 
   function renderJSON() {
     var nameA = document.getElementById("nameA").value.trim() || "Column A";
     var nameB = document.getElementById("nameB").value.trim() || "Column B";
-    var notes = document.getElementById("notesInput").value.trim();
-    var payload = { timer: fmt(elapsed()), NOTES: notes };
-    payload[nameA] = btnData.A;
-    payload[nameB] = btnData.B;
+    var notesA = document.getElementById("notesA").value.trim();
+    var notesB = document.getElementById("notesB").value.trim();
+    var colA = JSON.parse(JSON.stringify(btnData.A));
+    colA.NOTES = notesA;
+    var colB = JSON.parse(JSON.stringify(btnData.B));
+    colB.NOTES = notesB;
+    var payload = { timer: fmt(elapsed()) };
+    payload[nameA] = colA;
+    payload[nameB] = colB;
     document.getElementById("jsonOutput").textContent = JSON.stringify(payload, null, 2);
   }
 
@@ -322,7 +330,8 @@
 
   document.getElementById("nameA").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
   document.getElementById("nameB").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
-  document.getElementById("notesInput").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
+  document.getElementById("notesA").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
+  document.getElementById("notesB").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
 </script>
 
 </body>
