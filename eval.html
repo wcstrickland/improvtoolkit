@@ -14,316 +14,70 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0e0e0e;
-    --surface: #161616;
-    --border: #2a2a2a;
-    --border-bright: #3a3a3a;
-    --text: #e8e8e8;
-    --text-muted: #666;
-    --text-dim: #444;
-    --accent: #c8f04e;
-    --accent-dim: #8aaa2a;
-    --accent-bg: rgba(200, 240, 78, 0.08);
-    --pressed-bg: rgba(200, 240, 78, 0.12);
-    --pressed-border: #c8f04e;
-    --pressed-text: #c8f04e;
-    --red: #ff5a5a;
-    --green: #4ef09a;
-    --mono: 'IBM Plex Mono', monospace;
-    --sans: 'IBM Plex Sans', sans-serif;
+    --bg: #0e0e0e; --surface: #161616; --border: #2a2a2a; --border-bright: #3a3a3a;
+    --text: #e8e8e8; --text-muted: #666; --text-dim: #444;
+    --accent: #c8f04e; --accent-dim: #8aaa2a; --accent-bg: rgba(200,240,78,0.08);
+    --pressed-bg: rgba(200,240,78,0.12); --pressed-border: #c8f04e; --pressed-text: #c8f04e;
+    --red: #ff5a5a; --green: #4ef09a;
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
   }
 
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-  }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--sans); }
+  body { min-height: 100vh; padding: 28px 24px 48px; }
 
-  body {
-    min-height: 100vh;
-    padding: 28px 24px 48px;
-  }
+  .top-bar { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .timer-display { font-family: var(--mono); font-size: 36px; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; min-width: 110px; font-variant-numeric: tabular-nums; }
+  .timer-display.stopped { color: var(--text-muted); }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 
-  /* ── TOP BAR ── */
-  .top-bar {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-
-  .timer-display {
-    font-family: var(--mono);
-    font-size: 36px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-    min-width: 110px;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .timer-display.stopped {
-    color: var(--text-muted);
-  }
-
-  .controls {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .ctrl-btn {
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 500;
-    padding: 8px 18px;
-    border-radius: 3px;
-    border: 1px solid var(--border-bright);
-    background: var(--surface);
-    color: var(--text-muted);
-    cursor: pointer;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: all 0.12s;
-  }
-
+  .ctrl-btn { font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 8px 18px; border-radius: 3px; border: 1px solid var(--border-bright); background: var(--surface); color: var(--text-muted); cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.12s; }
   .ctrl-btn:hover { border-color: #555; color: var(--text); }
-
-  .ctrl-btn.start {
-    border-color: var(--green);
-    color: var(--green);
-    background: rgba(78, 240, 154, 0.06);
-  }
-  .ctrl-btn.start:hover { background: rgba(78, 240, 154, 0.14); }
-
-  .ctrl-btn.stop {
-    border-color: var(--red);
-    color: var(--red);
-    background: rgba(255, 90, 90, 0.06);
-  }
-  .ctrl-btn.stop:hover { background: rgba(255, 90, 90, 0.14); }
-
+  .ctrl-btn.start { border-color: var(--green); color: var(--green); background: rgba(78,240,154,0.06); }
+  .ctrl-btn.start:hover { background: rgba(78,240,154,0.14); }
+  .ctrl-btn.stop { border-color: var(--red); color: var(--red); background: rgba(255,90,90,0.06); }
+  .ctrl-btn.stop:hover { background: rgba(255,90,90,0.14); }
   .ctrl-btn.reset:hover { border-color: #888; color: #ccc; }
-
-  .ctrl-btn.history-btn {
-    border-color: #6a5acd;
-    color: #a090f0;
-    background: rgba(106, 90, 205, 0.07);
-  }
-  .ctrl-btn.history-btn:hover { background: rgba(106, 90, 205, 0.16); border-color: #a090f0; }
-
-  .ctrl-btn.json-btn {
-    margin-left: auto;
-    border-color: var(--accent-dim);
-    color: var(--accent);
-    background: var(--accent-bg);
-    letter-spacing: 0.04em;
-  }
+  .ctrl-btn.history-btn { border-color: #6a5acd; color: #a090f0; background: rgba(106,90,205,0.07); }
+  .ctrl-btn.history-btn:hover { background: rgba(106,90,205,0.16); border-color: #a090f0; }
+  .ctrl-btn.json-btn { margin-left: auto; border-color: var(--accent-dim); color: var(--accent); background: var(--accent-bg); }
   .ctrl-btn.json-btn:hover { background: rgba(200,240,78,0.16); border-color: var(--accent); }
 
-  /* ── COLUMNS ── */
-  .columns-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
+  .columns-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-  .col-name-input {
-    width: 100%;
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 9px 12px;
-    margin-bottom: 10px;
-    outline: none;
-    transition: border-color 0.12s;
-  }
-  .col-name-input::placeholder {
-    color: var(--text-dim);
-    font-weight: 400;
-  }
-  .col-name-input:focus {
-    border-color: var(--accent-dim);
-  }
+  .col-name-input { width: 100%; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 9px 12px; margin-bottom: 10px; outline: none; transition: border-color 0.12s; }
+  .col-name-input::placeholder { color: var(--text-dim); font-weight: 400; }
+  .col-name-input:focus { border-color: var(--accent-dim); }
 
-  .col-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .col-buttons { display: flex; flex-direction: column; gap: 6px; }
 
-  .scene-btn {
-    width: 100%;
-    padding: 11px 14px;
-    border-radius: 3px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.1s, border-color 0.1s, color 0.1s;
-    text-align: left;
-  }
+  .scene-btn { width: 100%; padding: 11px 14px; border-radius: 3px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.1s, border-color 0.1s, color 0.1s; text-align: left; }
+  .scene-btn:hover { border-color: var(--border-bright); background: #1e1e1e; }
+  .scene-btn.pressed { background: var(--pressed-bg); border-color: var(--pressed-border); color: var(--pressed-text); }
+  .btn-name { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; }
+  .btn-ts { font-size: 11px; font-weight: 400; color: var(--text-dim); font-variant-numeric: tabular-nums; transition: color 0.1s; }
+  .scene-btn.pressed .btn-ts { color: var(--accent-dim); }
 
-  .scene-btn:hover {
-    border-color: var(--border-bright);
-    background: #1e1e1e;
-  }
-
-  .scene-btn.pressed {
-    background: var(--pressed-bg);
-    border-color: var(--pressed-border);
-    color: var(--pressed-text);
-  }
-
-  .btn-name {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  .btn-ts {
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--text-dim);
-    font-variant-numeric: tabular-nums;
-    transition: color 0.1s;
-  }
-
-  .scene-btn.pressed .btn-ts {
-    color: var(--accent-dim);
-  }
-
-  /* ── NOTES ── */
-  .notes-wrap {
-    margin-top: 20px;
-  }
-  .notes-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 8px;
-  }
-  .notes-textarea {
-    width: 100%;
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 10px 12px;
-    resize: vertical;
-    min-height: 90px;
-    outline: none;
-    line-height: 1.6;
-    transition: border-color 0.12s;
-  }
+  .notes-wrap { margin-top: 20px; }
+  .notes-label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+  .notes-textarea { width: 100%; font-family: var(--mono); font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 10px 12px; resize: vertical; min-height: 90px; outline: none; line-height: 1.6; transition: border-color 0.12s; }
   .notes-textarea::placeholder { color: var(--text-dim); }
   .notes-textarea:focus { border-color: var(--accent-dim); }
 
-
-  .json-section {
-    margin-top: 24px;
-    display: none;
-  }
-
-  .json-section.visible {
-    display: block;
-  }
-
-  .json-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  .json-header-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-  .copy-btn {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 3px;
-    border: 1px solid var(--border-bright);
-    background: var(--surface);
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.12s;
-  }
+  .json-section { margin-top: 24px; display: none; }
+  .json-section.visible { display: block; }
+  .json-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .json-header-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .copy-btn { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 3px; border: 1px solid var(--border-bright); background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.12s; }
   .copy-btn:hover { border-color: #555; color: var(--text); }
-  .copy-btn.copied {
-    border-color: var(--green);
-    color: var(--green);
-    background: rgba(78, 240, 154, 0.06);
-  }
-
-  .json-output {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 16px 18px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: #a8d060;
-    white-space: pre-wrap;
-    word-break: break-all;
-    max-height: 320px;
-    overflow-y: auto;
-    line-height: 1.7;
-  }
-
-  /* scrollbar */
+  .copy-btn.copied { border-color: var(--green); color: var(--green); background: rgba(78,240,154,0.06); }
+  .json-output { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 16px 18px; font-family: var(--mono); font-size: 12px; color: #a8d060; white-space: pre-wrap; word-break: break-all; max-height: 320px; overflow-y: auto; line-height: 1.7; }
   .json-output::-webkit-scrollbar { width: 6px; }
   .json-output::-webkit-scrollbar-track { background: transparent; }
   .json-output::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 
-  /* ── STATUS DOT ── */
-  .status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--text-dim);
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .status-dot.running {
-    background: var(--green);
-    box-shadow: 0 0 6px rgba(78,240,154,0.6);
-    animation: pulse 1.2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; transition: background 0.2s; }
+  .status-dot.running { background: var(--green); box-shadow: 0 0 6px rgba(78,240,154,0.6); animation: pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 </style>
 
 <div class="center-contain">
@@ -332,10 +86,10 @@
     <div class="status-dot" id="statusDot"></div>
     <span class="timer-display stopped" id="timerDisplay">0:00.0</span>
     <div class="controls">
-      <button class="ctrl-btn start" onclick="startTimer()">▶ Start</button>
-      <button class="ctrl-btn stop" onclick="stopTimer()">■ Stop</button>
-      <button class="ctrl-btn reset" onclick="resetAll()">↺ Reset</button>
-      <button class="ctrl-btn history-btn" onclick="openHistory()">⊞ View History</button>
+      <button class="ctrl-btn start" onclick="startTimer()">&#9654; Start</button>
+      <button class="ctrl-btn stop" onclick="stopTimer()">&#9632; Stop</button>
+      <button class="ctrl-btn reset" onclick="resetAll()">&#8635; Reset</button>
+      <button class="ctrl-btn history-btn" onclick="openHistory()">&#8862; View History</button>
       <button class="ctrl-btn json-btn" onclick="toggleJSON()">{ } Export JSON</button>
     </div>
   </div>
@@ -359,7 +113,7 @@
   <div class="json-section" id="jsonSection">
     <div class="json-header">
       <span class="json-header-label">JSON Output</span>
-      <button class="copy-btn" id="copyBtn" onclick="copyJSON()">⎘ Copy</button>
+      <button class="copy-btn" id="copyBtn" onclick="copyJSON()">Copy</button>
     </div>
     <pre class="json-output" id="jsonOutput"></pre>
   </div>
@@ -367,25 +121,21 @@
 </div>
 
 <script>
-  const LABELS = ["YES", "AND", "WHO", "WHAT", "WHERE", "LABEL", "FRAME", "HEIGHTEN", "REST", "JUSTIFY"];
-
-  let timerStart = null;
-  let timerOffset = 0;
-  let timerRunning = false;
-  let rafId = null;
-  let btnData = { A: {}, B: {} };
-  let jsonVisible = false;
+  var LABELS = ["YES","AND","WHO","WHAT","WHERE","LABEL","FRAME","HEIGHTEN","REST","JUSTIFY"];
+  var STORAGE_KEY = "scene_tracker_history";
+  var timerStart = null, timerOffset = 0, timerRunning = false, rafId = null;
+  var btnData = { A: {}, B: {} };
+  var jsonVisible = false;
 
   function fmt(ms) {
-    const tenths = Math.floor(ms / 100) % 10;
-    const secs   = Math.floor(ms / 1000) % 60;
-    const mins   = Math.floor(ms / 60000);
-    return mins + ":" + String(secs).padStart(2, "0") + "." + tenths;
+    var tenths = Math.floor(ms / 100) % 10;
+    var secs = Math.floor(ms / 1000) % 60;
+    var mins = Math.floor(ms / 60000);
+    return mins + ":" + String(secs).padStart(2,"0") + "." + tenths;
   }
 
   function elapsed() {
-    if (!timerRunning) return timerOffset;
-    return timerOffset + (Date.now() - timerStart);
+    return timerRunning ? timerOffset + (Date.now() - timerStart) : timerOffset;
   }
 
   function tick() {
@@ -395,18 +145,15 @@
 
   function startTimer() {
     if (timerRunning) return;
-    timerStart = Date.now();
-    timerRunning = true;
-    const disp = document.getElementById("timerDisplay");
-    disp.classList.remove("stopped");
+    timerStart = Date.now(); timerRunning = true;
+    document.getElementById("timerDisplay").classList.remove("stopped");
     document.getElementById("statusDot").classList.add("running");
     rafId = requestAnimationFrame(tick);
   }
 
   function stopTimer() {
     if (!timerRunning) return;
-    timerOffset += Date.now() - timerStart;
-    timerRunning = false;
+    timerOffset += Date.now() - timerStart; timerRunning = false;
     cancelAnimationFrame(rafId);
     document.getElementById("timerDisplay").classList.add("stopped");
     document.getElementById("statusDot").classList.remove("running");
@@ -418,7 +165,10 @@
     document.getElementById("timerDisplay").textContent = "0:00.0";
     document.getElementById("timerDisplay").classList.add("stopped");
     btnData = { A: {}, B: {} };
-    document.querySelectorAll(".scene-btn").forEach(btn => {
+    document.getElementById("nameA").value = "";
+    document.getElementById("nameB").value = "";
+    document.getElementById("notesInput").value = "";
+    document.querySelectorAll(".scene-btn").forEach(function(btn) {
       btn.classList.remove("pressed");
       btn.querySelector(".btn-ts").textContent = "";
     });
@@ -430,7 +180,7 @@
   }
 
   function pressBtn(col, label, el) {
-    const ts = fmt(elapsed());
+    var ts = fmt(elapsed());
     btnData[col][label] = ts;
     el.classList.add("pressed");
     el.querySelector(".btn-ts").textContent = ts;
@@ -438,109 +188,48 @@
   }
 
   function copyJSON() {
-    const text = document.getElementById("jsonOutput").textContent;
+    var text = document.getElementById("jsonOutput").textContent;
     if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      const btn = document.getElementById("copyBtn");
-      btn.textContent = "✓ Copied";
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById("copyBtn");
+      btn.textContent = "Copied!";
       btn.classList.add("copied");
-      setTimeout(() => {
-        btn.textContent = "⎘ Copy";
-        btn.classList.remove("copied");
-      }, 2000);
+      setTimeout(function() { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 2000);
     });
   }
 
-  const STORAGE_KEY = "scene_tracker_history";
-
   function saveToHistory(payload) {
-    let history = [];
+    var history = [];
     try { history = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch(e) {}
-    payload._savedAt = new Date().toISOString();
     history.push(payload);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
   }
 
-  function openHistory() {
-    let history = [];
-    try { history = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch(e) {}
-    const json = JSON.stringify(history, null, 2);
-    const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Session History</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #0e0e0e; color: #e8e8e8; font-family: 'IBM Plex Mono', monospace; padding: 28px 24px 48px; min-height: 100vh; }
-  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #2a2a2a; flex-wrap: wrap; gap: 12px; }
-  h1 { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #a090f0; }
-  .count { font-size: 11px; color: #444; }
-  .btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 3px; cursor: pointer; transition: all 0.12s; }
-  .btn-copy { border: 1px solid #3a3a3a; background: #161616; color: #666; }
-  .btn-copy:hover { border-color: #555; color: #e8e8e8; }
-  .btn-copy.copied { border-color: #4ef09a; color: #4ef09a; background: rgba(78,240,154,0.06); }
-  .btn-clear { border: 1px solid #5a2020; background: rgba(255,90,90,0.06); color: #ff5a5a; }
-  .btn-clear:hover { background: rgba(255,90,90,0.14); }
-  .actions { display: flex; gap: 8px; }
-  pre { background: #161616; border: 1px solid #2a2a2a; border-radius: 3px; padding: 20px; font-size: 12px; color: #a8d060; white-space: pre-wrap; word-break: break-all; line-height: 1.7; overflow-y: auto; }
-  pre::-webkit-scrollbar { width: 6px; } pre::-webkit-scrollbar-track { background: transparent; } pre::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-  .empty { color: #444; font-size: 13px; padding: 40px 0; text-align: center; }
-</style>
-</head>
-<body>
-<div class="header">
-  <div>
-    <h1>Session History</h1>
-    <div class="count">${history.length} session${history.length !== 1 ? "s" : ""} stored</div>
-  </div>
-  <div class="actions">
-    <button class="btn btn-copy" id="copyAll" onclick="copyAll()">⎘ Copy All</button>
-    <button class="btn btn-clear" onclick="clearAll()">✕ Clear History</button>
-  </div>
-</div>
-${history.length === 0
-  ? '<div class="empty">No sessions saved yet.</div>'
-  : `<pre id="jsonPre">${json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`}
-<script>
-  function copyAll() {
-    navigator.clipboard.writeText(${JSON.stringify(json)}).then(() => {
-      const btn = document.getElementById("copyAll");
-      btn.textContent = "✓ Copied";
-      btn.classList.add("copied");
-      setTimeout(() => { btn.textContent = "⎘ Copy All"; btn.classList.remove("copied"); }, 2000);
-    });
+  function buildSnapshot() {
+    var nameA = document.getElementById("nameA").value.trim() || "Column A";
+    var nameB = document.getElementById("nameB").value.trim() || "Column B";
+    var notes = document.getElementById("notesInput").value.trim();
+    var snap = { _savedAt: new Date().toISOString(), timer: fmt(elapsed()), NOTES: notes };
+    snap[nameA] = JSON.parse(JSON.stringify(btnData.A));
+    snap[nameB] = JSON.parse(JSON.stringify(btnData.B));
+    return snap;
   }
-  function clearAll() {
-    if (confirm("Clear all saved session history?")) {
-      localStorage.setItem("scene_tracker_history", "[]");
-      location.reload();
-    }
-  }
-<\/script>
-</body>
-</html>`;
-    const blob = new Blob([html], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    window.open(url, "_blank");
+
+  function renderJSON() {
+    var nameA = document.getElementById("nameA").value.trim() || "Column A";
+    var nameB = document.getElementById("nameB").value.trim() || "Column B";
+    var notes = document.getElementById("notesInput").value.trim();
+    var payload = { timer: fmt(elapsed()), NOTES: notes };
+    payload[nameA] = btnData.A;
+    payload[nameB] = btnData.B;
+    document.getElementById("jsonOutput").textContent = JSON.stringify(payload, null, 2);
   }
 
   function toggleJSON() {
-    const section = document.getElementById("jsonSection");
+    var section = document.getElementById("jsonSection");
     jsonVisible = !jsonVisible;
     if (jsonVisible) {
-      const nameA = document.getElementById("nameA").value.trim() || "Column A";
-      const nameB = document.getElementById("nameB").value.trim() || "Column B";
-      const notes = document.getElementById("notesInput").value.trim();
-      const snapshot = {
-        timer: fmt(elapsed()),
-        [nameA]: Object.assign({}, btnData.A),
-        [nameB]: Object.assign({}, btnData.B),
-        NOTES: notes
-      };
-      saveToHistory(snapshot);
+      saveToHistory(buildSnapshot());
       renderJSON();
       section.classList.add("visible");
     } else {
@@ -548,27 +237,82 @@ ${history.length === 0
     }
   }
 
-  function renderJSON() {
-    const nameA = document.getElementById("nameA").value.trim() || "Column A";
-    const nameB = document.getElementById("nameB").value.trim() || "Column B";
-    const notes = document.getElementById("notesInput").value.trim();
-    const payload = {
-      timer: fmt(elapsed()),
-      [nameA]: btnData.A,
-      [nameB]: btnData.B,
-      NOTES: notes
-    };
-    document.getElementById("jsonOutput").textContent = JSON.stringify(payload, null, 2);
+  function openHistory() {
+    var history = [];
+    try { history = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch(e) {}
+
+    var jsonStr = JSON.stringify(history, null, 2);
+    var escaped = jsonStr.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    var count = history.length;
+    var word = count === 1 ? "session" : "sessions";
+
+    var preBlock = count === 0
+      ? '<p style="color:#444;padding:40px 0;text-align:center;">No sessions saved yet.</p>'
+      : '<pre>' + escaped + '</pre>';
+
+    var inlineScript = 'var d=' + JSON.stringify(jsonStr) + ';'
+      + 'function ca(){'
+      +   'navigator.clipboard.writeText(d).then(function(){'
+      +     'var b=document.getElementById("ca");'
+      +     'b.textContent="Copied!";b.style.color="#4ef09a";b.style.borderColor="#4ef09a";'
+      +     'setTimeout(function(){b.textContent="Copy All";b.style.color="";b.style.borderColor="";},2000);'
+      +   '});'
+      + '}'
+      + 'function cl(){'
+      +   'if(confirm("Clear all saved session history?")){'
+      +     'localStorage.setItem("scene_tracker_history","[]");location.reload();'
+      +   '}'
+      + '}';
+
+    var page = '<!DOCTYPE html>'
+      + '<html lang="en"><head>'
+      + '<meta charset="UTF-8">'
+      + '<meta name="viewport" content="width=device-width,initial-scale=1.0">'
+      + '<title>Session History</title>'
+      + '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">'
+      + '<style>'
+      + '*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}'
+      + "body{background:#0e0e0e;color:#e8e8e8;font-family:'IBM Plex Mono',monospace;padding:28px 24px 48px}"
+      + '.hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #2a2a2a;flex-wrap:wrap;gap:12px}'
+      + 'h1{font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#a090f0;margin-bottom:4px}'
+      + '.ct{font-size:11px;color:#444}'
+      + '.acts{display:flex;gap:8px}'
+      + "button{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:3px;cursor:pointer;background:#161616;border:1px solid #3a3a3a;color:#888;transition:all .12s}"
+      + 'button:hover{border-color:#555;color:#e8e8e8}'
+      + '.del{border-color:#5a2020;background:rgba(255,90,90,.06);color:#ff5a5a}'
+      + '.del:hover{background:rgba(255,90,90,.14)}'
+      + 'pre{background:#161616;border:1px solid #2a2a2a;border-radius:3px;padding:20px;font-size:12px;color:#a8d060;white-space:pre-wrap;word-break:break-all;line-height:1.7}'
+      + '</style>'
+      + '</head><body>'
+      + '<div class="hdr">'
+      +   '<div><h1>Session History</h1><div class="ct">' + count + ' ' + word + ' stored</div></div>'
+      +   '<div class="acts">'
+      +     '<button id="ca" onclick="ca()">Copy All</button>'
+      +     '<button class="del" onclick="cl()">Clear History</button>'
+      +   '</div>'
+      + '</div>'
+      + preBlock
+      + '<script>' + inlineScript + '</' + 'script>'
+      + '</body></html>';
+
+    var blob = new Blob([page], { type: "text/html" });
+    window.open(URL.createObjectURL(blob), "_blank");
   }
 
   function buildColumns() {
-    ["A", "B"].forEach(col => {
-      const container = document.getElementById("col" + col);
-      LABELS.forEach(label => {
-        const btn = document.createElement("button");
+    ["A","B"].forEach(function(col) {
+      var container = document.getElementById("col" + col);
+      LABELS.forEach(function(label) {
+        var btn = document.createElement("button");
         btn.className = "scene-btn";
-        btn.innerHTML = `<span class="btn-name">${label}</span><span class="btn-ts"></span>`;
-        btn.addEventListener("click", () => pressBtn(col, label, btn));
+        var nameSpan = document.createElement("span");
+        nameSpan.className = "btn-name";
+        nameSpan.textContent = label;
+        var tsSpan = document.createElement("span");
+        tsSpan.className = "btn-ts";
+        btn.appendChild(nameSpan);
+        btn.appendChild(tsSpan);
+        btn.addEventListener("click", function() { pressBtn(col, label, btn); });
         container.appendChild(btn);
       });
     });
@@ -576,9 +320,9 @@ ${history.length === 0
 
   buildColumns();
 
-  document.getElementById("nameA").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
-  document.getElementById("nameB").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
-  document.getElementById("notesInput").addEventListener("input", () => { if (jsonVisible) renderJSON(); });
+  document.getElementById("nameA").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
+  document.getElementById("nameB").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
+  document.getElementById("notesInput").addEventListener("input", function() { if (jsonVisible) renderJSON(); });
 </script>
 
 </body>
