@@ -75,7 +75,10 @@
   .json-output::-webkit-scrollbar-track { background: transparent; }
   .json-output::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 
-  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; transition: background 0.2s; }
+  .ctrl-btn.suggest-btn { border-color: #d4845a; color: #e8a07a; background: rgba(212,132,90,0.07); }
+  .ctrl-btn.suggest-btn:hover { background: rgba(212,132,90,0.16); border-color: #e8a07a; }
+  .suggestion-display { font-family: var(--mono); font-size: 20px; font-weight: 600; color: #e8a07a; letter-spacing: 0.04em; width: 100%; margin-top: -8px; margin-bottom: 4px; min-height: 28px; }
+ background: var(--text-dim); flex-shrink: 0; transition: background 0.2s; }
   .status-dot.running { background: var(--green); box-shadow: 0 0 6px rgba(78,240,154,0.6); animation: pulse 1.2s ease-in-out infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 </style>
@@ -89,9 +92,11 @@
       <button class="ctrl-btn start" onclick="startTimer()">&#9654; Start</button>
       <button class="ctrl-btn stop" onclick="stopTimer()">&#9632; Stop</button>
       <button class="ctrl-btn reset" onclick="resetAll()">&#8635; Reset</button>
+      <button class="ctrl-btn suggest-btn" onclick="getSuggestion()">&#9889; Suggestion</button>
       <button class="ctrl-btn history-btn" onclick="openHistory()">&#8862; View History</button>
       <button class="ctrl-btn json-btn" onclick="toggleJSON()">{ } Export JSON</button>
     </div>
+    <div class="suggestion-display" id="suggestionDisplay"></div>
   </div>
 
   <div class="columns-wrap">
@@ -166,6 +171,8 @@
     document.getElementById("nameB").value = "";
     document.getElementById("notesA").value = "";
     document.getElementById("notesB").value = "";
+    currentSuggestion = "";
+    document.getElementById("suggestionDisplay").textContent = "";
     document.querySelectorAll(".scene-btn").forEach(function(btn) {
       btn.classList.remove("pressed");
       btn.querySelector(".btn-ts").textContent = "";
@@ -208,7 +215,7 @@
     var nameB = document.getElementById("nameB").value.trim() || "Column B";
     var notesA = document.getElementById("notesA").value.trim();
     var notesB = document.getElementById("notesB").value.trim();
-    var snap = { _savedAt: new Date().toISOString(), timer: fmt(elapsed()) };
+    var snap = { _savedAt: new Date().toISOString(), timer: fmt(elapsed()), suggestion: currentSuggestion };
     var colA = JSON.parse(JSON.stringify(btnData.A));
     colA.NOTES = notesA;
     var colB = JSON.parse(JSON.stringify(btnData.B));
@@ -227,7 +234,7 @@
     colA.NOTES = notesA;
     var colB = JSON.parse(JSON.stringify(btnData.B));
     colB.NOTES = notesB;
-    var payload = { timer: fmt(elapsed()) };
+    var payload = { timer: fmt(elapsed()), suggestion: currentSuggestion };
     payload[nameA] = colA;
     payload[nameB] = colB;
     document.getElementById("jsonOutput").textContent = JSON.stringify(payload, null, 2);
@@ -305,6 +312,29 @@
 
     var blob = new Blob([page], { type: "text/html" });
     window.open(URL.createObjectURL(blob), "_blank");
+  }
+
+  var currentSuggestion = "";
+
+  var WORD_LISTS = {
+    relationships: ["Parent","Child","Sibling","Spouse","Friend","Grandparent","Grandchild","Cousin","Aunt/Uncle","Nephew/Niece","Co-worker","Boss","Mentor","Teacher","Student","Neighbor","Roommate","Acquaintance","Supervisor","Employee","Business Partner","Teammate","Fiance/Fiancee","Ex-partner","In-Law","Godparent","Godchild","Guardian","Ward","Rival","Ally","Confidant","Pen Pal","Travel Buddy","Study Buddy","Workout Buddy","Volunteer Partner","Companion","Consultant","Client","Customer","Service Provider","Agent","Fan","Idol","Apprentice","Master","Advisor","Advocate","Archenemy","Benefactor","Colleague","Frenemy","Journey Partner","Mentee","Protege","Sponsor","Co-founder","Investor","Landlord/Tenant","Seller/Buyer","Siblings-in-Law","Step-Parent","Step-Child","Step-Sibling","Step-Grandparent","Step-Grandchild","Step-Cousin","Teaching Assistant","Boss's Boss","Intern"],
+    events: ["Birthday Party","Wedding","Graduation Ceremony","Baby Shower","Anniversary Celebration","Retirement Party","Engagement Party","Barbecue","Fundraising Gala","Concert","Bridal Shower","Reunion","Business Conference","Product Launch","Holiday Celebration","Charity Auction","Art Exhibition","Sporting Event","Movie Premiere","Award Ceremony","Book Launch","Fashion Show","Trade Show","New Year's Eve Party","Bar Mitzvah","Bat Mitzvah","Science Fair","Music Festival","Wine Tasting","Charity Run","Craft Fair","Prom","Thanksgiving Dinner","Job Fair","Lecture Series","Food Festival","Poetry Reading","Comedy Show","Talent Show","Graduation Party","Exhibition Opening","Political Rally","Memorial Service","Community Picnic","Film Festival","Poetry Slam","Fashion Week","Charity Ball","Costume Party","Gaming Convention","Bar Crawl","Art Festival","Car Show","Tech Expo","Dance Competition","Wellness Retreat","Holiday Parade","Air Show","Flower Show","Farmers Market","Pet Adoption Event","Culinary Workshop","Art Walk","Kids' Fair","Music Concert","Career Fair","Art Workshop","Motivational Seminar","Wedding Expo","Gaming Tournament","Jazz Festival","Cultural Festival","Tech Conference","Craft Workshop","Antique Fair","Circus Performance"],
+    items: ["Pen","Paper","Chair","Table","Book","Lamp","Phone","Keys","Coffee mug","Sunglasses","Headphones","Wallet","Water bottle","Plant","Remote control","Towel","Spoon","Fork","Knife","Plate","Couch","Television","Scissors","Notebook","Marker","Glue","Backpack","Tissue box","Watch","Ruler","Calculator","USB drive","Charger","Hairbrush","Toothbrush","Toothpaste","Soap","Hammer","Nails","Flashlight","Batteries","Ladder","Sponge","Blender","Toaster","Microwave","Guitar","Piano","Drum","Violin","Telescope","Microscope","Compass","Binoculars","Thermometer","Yoga mat","Dumbbell","Kettlebell","Kayak paddle","Hiking boots","Tent","Sleeping bag","Lantern","Candle","First aid kit","Dart board","Chess set","Deck of cards","Puzzle","Board game","Dice","Soccer ball","Basketball","Tennis ball","Turntable","Amplifier","Speaker","Microphone","Drone","Smartwatch","Projector","Wireless earbuds","Power bank","External hard drive","Router","Whiteboard","Sticky notes","Stapler","Scissors","Broom","Dustpan","Vacuum cleaner","Watering can","Shovel","Rake","Wheelbarrow","Kite","Frisbee","Yo-yo","Hula hoop","Jump rope","Boomerang","Bubble wrap","Clipboard","Corkscrew","Crystal ball","Calligraphy pen","Carabiner","Crowbar","Chisel","Duct tape"],
+    locations: ["Hospital","School","Library","Gym","Coffee Shop","Mall","Stadium","Theater","Restaurant","Park","Airport","Beach","Museum","Concert Hall","Office","Farm","Zoo","Church","Cemetery","Laboratory","Amusement Park","Factory","Spa","Shopping Center","Hotel","University","Pharmacy","Garage","Orphanage","Playground","Daycare Center","Courthouse","Workshop","Greenhouse","Aquarium","Temple","Observatory","Vineyard","Studio","Casino","Bakery","Brewery","Car Dealership","Film Studio","Art Gallery","Community Center","Animal Shelter","Recording Studio","Water Park","Bowling Alley","Police Station","Fire Station","Arcade","Clinic","Lodge","Farmhouse","Warehouse","Recycling Center","Fitness Center","Dance Studio","Film Set","Auction House"],
+    descriptors: ["Disheveled","Vengeful","Triumphant","Reluctant","Jealous","Joyful","Timid","Overconfident","Agreeable","Curious","Enthusiastic","Resilient","Sincere","Energetic","Pessimistic","Resourceful","Compassionate","Sarcastic","Persistent","Adventurous","Cautious","Cheerful","Pensive","Inquisitive","Determined","Reckless","Indifferent","Confident","Gloomy","Courageous","Generous","Thoughtful","Mysterious","Foolish","Caring","Ambitious","Reliable","Stubborn","Friendly","Impulsive","Serene","Bashful","Grateful","Fierce","Whimsical","Loyal","Gregarious","Unpredictable","Helpful","Hesitant","Charming","Reclusive","Adaptable","Insecure","Vivacious","Innovative","Doubtful","Spontaneous","Patient","Skeptical","Impatient","Passionate","Altruistic","Considerate","Meticulous","Egocentric","Grumpy","Warm-hearted","Prudent","Proud","Sensible","Nervous","Dependable","Artistic","Analytical","Humble","Arrogant","Tolerant","Anxious","Respectful","Carefree","Cynical","Confused","Resolute","Vulnerable","Polite","Hopeful","Apprehensive","Optimistic","Gentle","Callous","Amiable","Depressed","Relaxed","Daring","Irritable","Innocent","Decisive","Mature","Clumsy","Responsible","Gracious","Gullible","Diligent","Sociable","Stoic","Empathetic","Enigmatic","Vibrant","Tenacious","Inflexible","Intuitive","Indecisive","Charismatic","Discreet","Open-minded","Perceptive","Pragmatic","Contemplative","Lighthearted","Introspective","Steadfast","Independent","Creative","Diplomatic","Selfless","Outgoing","Brilliant","Affectionate","Jovial","Modest","Playful","Practical","Inventive","Sophisticated","Vigilant","Savvy","Forthright","Vexed","Sensitive","Discerning","Exuberant"],
+    roles: ["Sister","Boyfriend","Boss","Firefighter","School Nurse","Politician","Dog Catcher","Social Worker","Best Friend","Son","Co-worker","Mentor","Soldier","Lawyer","Nurse Practitioner","Teacher","Chef","Paramedic","Principal","Mayor","Counselor","Neighbor","Daughter","Supervisor","Coach","Captain","Paralegal","Spouse","Janitor","Pediatrician","Clergy","Accountant","Lifeguard","Detective","Librarian","Teammate","General","Grandparent","Director","Plumber","Marriage Counselor","Babysitter","Judge","Sibling","Manager","CEO","Zoologist","Therapist","Landlord","Mechanic","Caretaker","Police Officer","Artist","Nanny","Senator","Psychologist","Landscaper","Advisor","Electrician","Companion","Technician","Sheriff","Entrepreneur","Archaeologist","Pharmacist","Personal Trainer","Financial Advisor","Veterinarian","Custodian","Guidance Counselor","Housekeeper","Researcher","Taxi Driver","HR Manager","Physical Therapist","Pilot","Event Planner","Forensic Scientist","Architect","Referee","Biologist","Flight Attendant","Songwriter","Dentist","Graphic Designer","Park Ranger","Translator","Geologist","Barista","Construction Worker","Meteorologist","Zookeeper","Economist","Interior Designer","Museum Curator","Yoga Instructor","Botanist","Nutritionist","Realtor","Hair Stylist","Chemist","Biomedical Engineer","Speech Therapist","Surgeon","Astronomer","Fashion Designer","Conductor","Pet Groomer","Biotechnologist","Urban Planner","Martial Arts Instructor","Cinematographer","Cartographer","Epidemiologist","Data Analyst","Stage Manager","Robotics Engineer","Marine Biologist","Environmental Consultant","Crime Scene Investigator","Linguist","Psychiatrist","Digital Marketer","Civil Engineer","Fitness Instructor","Copywriter","Sommelier","Sound Engineer","Fashion Stylist","Geophysicist","Brand Manager","Forensic Pathologist","Chemical Engineer","Agricultural Scientist","Political Analyst","Phlebotomist","Landscape Architect","Film Director","Sports Coach","Gardener"]
+  };
+
+  var ALL_WORDS = [];
+  Object.keys(WORD_LISTS).forEach(function(key) {
+    ALL_WORDS = ALL_WORDS.concat(WORD_LISTS[key]);
+  });
+
+  function getSuggestion() {
+    var word = ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)];
+    currentSuggestion = word;
+    document.getElementById("suggestionDisplay").textContent = word;
+    if (jsonVisible) renderJSON();
   }
 
   function buildColumns() {
